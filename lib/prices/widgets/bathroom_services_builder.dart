@@ -13,16 +13,25 @@ class BathroomServicesBuilder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      shrinkWrap: true,
-      itemCount: TicketType.values.length,
-      itemBuilder: (context, index) {
-        final sortedTickets = _servicesLoadSuccess.sortByType(TicketType.values[index]);
-        return BathroomServicesList(tickets: sortedTickets);
-      },
-      separatorBuilder: (context, index) {
-        return const SizedBox(height: 20);
-      },
+    final Size size = MediaQuery.of(context).size;
+    return SizedBox(
+      height: size.height,
+      width: size.width,
+      child: ListView.separated(
+        shrinkWrap: true,
+        itemCount: TicketType.values.length,
+        itemBuilder: (context, index) {
+          final type = TicketType.values[index];
+          final sortedTickets = _servicesLoadSuccess.sortByType(type);
+          return BathroomServicesList(
+            title: type.toStringReadable(),
+            tickets: sortedTickets,
+          );
+        },
+        separatorBuilder: (context, index) {
+          return const SizedBox(height: 20);
+        },
+      ),
     );
   }
 }

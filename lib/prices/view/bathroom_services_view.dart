@@ -6,6 +6,14 @@ import '../prices.dart';
 class BathroomServicesView extends StatelessWidget {
   const BathroomServicesView({Key? key}) : super(key: key);
 
+  static MaterialPageRoute route(BuildContext context) {
+    return MaterialPageRoute(
+      builder: (context) {
+        return const BathroomServicesView();
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

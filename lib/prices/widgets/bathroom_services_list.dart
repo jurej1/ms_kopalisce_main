@@ -5,44 +5,36 @@ class BathroomServicesList extends StatelessWidget {
   const BathroomServicesList({
     Key? key,
     required this.tickets,
-    this.title,
+    required this.title,
   }) : super(key: key);
 
   final List<Ticket> tickets;
-  final String? title;
-
-  int get _getListLength {
-    if (title != null) {
-      return tickets.length + 1;
-    }
-    return tickets.length;
-  }
+  final String title;
 
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      shrinkWrap: true,
-      itemBuilder: (context, index) {
-        if (index == 0 && (title?.isNotEmpty ?? false)) {
-          return Text(
-            title!,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-          );
-        }
-        final item = tickets[index - 1];
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          if (index == 0) {
+            return Text(
+              title,
+              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            );
+          }
+          final item = tickets[index - 1];
 
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(item.title),
-            Text('\$${item.price}'),
-          ],
-        );
-      },
-      separatorBuilder: (context, index) {
-        return const SizedBox(height: 10);
-      },
-      itemCount: _getListLength,
-    );
+          return Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(item.title),
+              Text('\$${item.price}'),
+            ],
+          );
+        },
+        separatorBuilder: (context, index) {
+          return const SizedBox(height: 10);
+        },
+        itemCount: tickets.length + 1);
   }
 }

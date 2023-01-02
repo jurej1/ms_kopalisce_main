@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ms_kopalisce_main/home/home.dart';
+import 'package:ms_kopalisce_main/prices/prices.dart';
 import 'package:ms_kopalisce_main/vouchers/view/view.dart';
 import 'package:ms_kopalisce_main/weather/blocs/weather/weather_bloc.dart';
 import 'package:ms_kopalisce_main/weather/view/view.dart';
@@ -39,6 +40,8 @@ class HomeView extends StatelessWidget {
             return const WeatherView();
           } else if (state.isCoupons) {
             return VoucherViewList.providers();
+          } else if (state.isPrices) {
+            return const PricesView();
           }
           return Container();
         },
