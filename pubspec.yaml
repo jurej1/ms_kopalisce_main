@@ -29,6 +29,10 @@ dependencies:
     git:
       url: https://github.com/jurej1/coupon_repository.git
       ref: master
+ price_repository:
+    git:
+      url: https://github.com/jurej1/price_repository.git
+      ref: master
 
 dev_dependencies:
   flutter_lints: ^2.0.0
