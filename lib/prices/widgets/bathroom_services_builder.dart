@@ -18,6 +18,7 @@ class BathroomServicesBuilder extends StatelessWidget {
       height: size.height,
       width: size.width,
       child: ListView.separated(
+        padding: const EdgeInsets.all(20),
         shrinkWrap: true,
         itemCount: TicketType.values.length,
         itemBuilder: (context, index) {
