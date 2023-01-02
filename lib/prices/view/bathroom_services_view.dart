@@ -18,7 +18,9 @@ class BathroomServicesView extends StatelessWidget {
             return const _LoadingScreen();
           } else if (state is BathroomServicesLoadFail) {
             return const _ErrorScreen();
-          } else if (state is BathroomServicesLoadSuccess) {}
+          } else if (state is BathroomServicesLoadSuccess) {
+            return BathroomServicesBuilder(loadSuccess: state);
+          }
           return Container();
         },
       ),

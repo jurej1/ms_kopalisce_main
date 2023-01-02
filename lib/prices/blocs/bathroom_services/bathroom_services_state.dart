@@ -11,7 +11,7 @@ class BathroomServicesLoadSuccess extends BathroomServicesState {
 
   const BathroomServicesLoadSuccess(this.tickets);
 
-  static List<Ticket> sortByType(List<Ticket> tickets, TicketType type) {
+  List<Ticket> sortByType(TicketType type) {
     final elementsCopy = List<Ticket>.from(tickets);
 
     return elementsCopy.where((element) => element.type == type).toList()
