@@ -277,6 +277,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  price_repository:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: "856ef5193552efe7452dd34b2a4b1fb94b5d56bd"
+      url: "https://github.com/jurej1/price_repository.git"
+    source: git
+    version: "0.0.0"
   provider:
     dependency: transitive
     description:
