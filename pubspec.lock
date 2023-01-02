@@ -128,7 +128,7 @@ packages:
       name: firebase_auth_platform_interface
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "6.11.3"
+    version: "6.11.7"
   firebase_auth_web:
     dependency: transitive
     description:
@@ -282,7 +282,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "856ef5193552efe7452dd34b2a4b1fb94b5d56bd"
+      resolved-ref: "7c68b6d916abb3a610d9422277956e5a3e49c765"
       url: "https://github.com/jurej1/price_repository.git"
     source: git
     version: "0.0.0"

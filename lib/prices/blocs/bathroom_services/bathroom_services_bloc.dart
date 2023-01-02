@@ -28,7 +28,7 @@ class BathroomServicesBloc extends Bloc<BathroomServicesEvent, BathroomServicesS
       QuerySnapshot querySnapshot = await _priceRepository.loadBathroomServicesPriceList();
       List<Ticket> tickets = querySnapshot.docs.map((e) => Ticket.fromDocuntSnapshot(e)).toList();
 
-      yield BathroomServicesLoadSucces(tickets);
+      yield BathroomServicesLoadSuccess(tickets);
     } catch (e) {
       yield BathroomServicesLoadFail();
     }

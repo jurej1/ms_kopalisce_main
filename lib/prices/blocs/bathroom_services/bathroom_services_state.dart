@@ -6,10 +6,19 @@ abstract class BathroomServicesState {
 
 class BathroomServicesLoading extends BathroomServicesState {}
 
-class BathroomServicesLoadSucces extends BathroomServicesState {
+class BathroomServicesLoadSuccess extends BathroomServicesState {
   final List<Ticket> tickets;
 
-  const BathroomServicesLoadSucces(this.tickets);
+  const BathroomServicesLoadSuccess(this.tickets);
+
+  static List<Ticket> sortByType(List<Ticket> tickets, TicketType type) {
+    final elementsCopy = List<Ticket>.from(tickets);
+
+    return elementsCopy.where((element) => element.type == type).toList()
+      ..sort(
+        (a, b) => a.price.compareTo(b.price),
+      );
+  }
 }
 
 class BathroomServicesLoadFail extends BathroomServicesState {}
