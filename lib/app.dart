@@ -9,6 +9,7 @@ import 'package:weather_repository/weather_repository.dart';
 
 import 'authentication/authentication.dart';
 import 'home/home.dart';
+import 'vouchers/vouchers.dart';
 
 class App extends StatefulWidget {
   const App({
@@ -61,7 +62,25 @@ class _AppState extends State<App> {
             create: (context) => FoodPricesListBloc(
               priceRepository: RepositoryProvider.of<PriceRepository>(context),
             )..add(FoodPricesListLoadRequested()),
-          )
+          ),
+          BlocProvider(
+            create: (context) => VoucherValidListBloc(
+              couponRepository: RepositoryProvider.of<CouponRepository>(context),
+              authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+            )..add(VoucherListLoadRequested()),
+          ),
+          BlocProvider(
+            create: (context) => VoucherUsedListBloc(
+              couponRepository: RepositoryProvider.of<CouponRepository>(context),
+              authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+            )..add(VoucherListLoadRequested()),
+          ),
+          BlocProvider(
+            create: (context) => VoucherExpiredListBloc(
+              couponRepository: RepositoryProvider.of<CouponRepository>(context),
+              authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+            )..add(VoucherListLoadRequested()),
+          ),
         ],
         child: MaterialApp(
           navigatorKey: _navigatorState,

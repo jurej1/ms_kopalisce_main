@@ -1,7 +1,6 @@
 import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ms_kopalisce_main/authentication/authentication.dart';
 import 'package:ms_kopalisce_main/vouchers/vouchers.dart';
 
 class VoucherViewList extends StatelessWidget {
@@ -12,24 +11,6 @@ class VoucherViewList extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => VoucherViewSelectorCubit(),
-        ),
-        BlocProvider(
-          create: (context) => VoucherValidListBloc(
-            couponRepository: RepositoryProvider.of<CouponRepository>(context),
-            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
-          )..add(VoucherListLoadRequested()),
-        ),
-        BlocProvider(
-          create: (context) => VoucherUsedListBloc(
-            couponRepository: RepositoryProvider.of<CouponRepository>(context),
-            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
-          )..add(VoucherListLoadRequested()),
-        ),
-        BlocProvider(
-          create: (context) => VoucherExpiredListBloc(
-            couponRepository: RepositoryProvider.of<CouponRepository>(context),
-            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
-          )..add(VoucherListLoadRequested()),
         ),
       ],
       child: const VoucherViewList._(),
