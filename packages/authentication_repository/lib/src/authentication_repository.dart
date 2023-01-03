@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'models/models.dart' as model;
-import '../authentication_repository.dart';
+
+import 'models/models.dart';
 
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
 extension AuthenticationStatusX on AuthenticationStatus {
-  get isAuthenticated => this == AuthenticationStatus.authenticated;
+  bool get isAuthenticated => this == AuthenticationStatus.authenticated;
 }
 
 class AuthenticationRepository {
@@ -37,18 +37,8 @@ class AuthenticationRepository {
     );
   }
 
-  String? get _currentUserId => _firebaseAuth.currentUser?.uid;
-
   Future<void> logOut() {
     return _firebaseAuth.signOut();
-  }
-
-  Stream<model.User> user(String id) {
-    return _firebaseFirestore
-        .collection('users')
-        .doc(id)
-        .snapshots()
-        .map((snap) => model.User.fromEntity(UserEntity.fromDocumentSnapshot(snap)));
   }
 
   Future<UserCredential> loginWithEmailAndPassword({required String email, required String password}) async {
@@ -61,7 +51,6 @@ class AuthenticationRepository {
 
       return userCredential;
     } catch (e) {
-      print('Create error $e');
       throw e;
     }
   }

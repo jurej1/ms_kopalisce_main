@@ -1,97 +1,65 @@
-import 'dart:developer';
-
 import 'package:equatable/equatable.dart';
-import 'package:http/http.dart' as http;
 
 class WeatherLocation extends Equatable {
-  final String locationName;
-  final double temp_c;
-  final double temp_f;
+  final String name;
   final DateTime lastUpdated;
-  final double? wind_kph;
-  final int? humidity;
-  final String? condition;
-  final String? iconPath;
+  final double tempC;
+  final double windKph;
+  final int humidity;
+  final String conditionText;
+  final String iconPath;
 
-  const WeatherLocation({
-    required this.locationName,
-    required this.temp_c,
-    required this.temp_f,
+  WeatherLocation({
+    required this.name,
     required this.lastUpdated,
-    this.wind_kph,
+    required this.tempC,
+    required this.windKph,
     required this.humidity,
-    this.condition,
-    this.iconPath,
+    required this.conditionText,
+    required this.iconPath,
   });
 
-  factory WeatherLocation.empty() => WeatherLocation(
-        locationName: '',
-        temp_c: 0.0,
-        temp_f: 0.0,
-        lastUpdated: DateTime.now(),
-        wind_kph: 0.0,
-        humidity: 0,
-      );
-
   @override
-  List<Object?> get props {
+  List<Object> get props {
     return [
-      locationName,
-      temp_c,
-      temp_f,
+      name,
       lastUpdated,
-      wind_kph,
+      tempC,
+      windKph,
       humidity,
-      condition,
+      conditionText,
       iconPath,
     ];
   }
 
   WeatherLocation copyWith({
-    String? locationName,
-    double? temp_c,
-    double? temp_f,
+    String? name,
     DateTime? lastUpdated,
-    double? wind_kph,
-    int? humidity,
-    String? condition,
+    double? tempC,
+    double? windKmh,
+    int? hummidity,
+    String? conditionText,
     String? iconPath,
   }) {
     return WeatherLocation(
-      locationName: locationName ?? this.locationName,
-      temp_c: temp_c ?? this.temp_c,
-      temp_f: temp_f ?? this.temp_f,
+      name: name ?? this.name,
       lastUpdated: lastUpdated ?? this.lastUpdated,
-      wind_kph: wind_kph ?? this.wind_kph,
-      humidity: humidity ?? this.humidity,
-      condition: condition ?? this.condition,
+      tempC: tempC ?? this.tempC,
+      windKph: windKmh ?? this.windKph,
+      humidity: hummidity ?? this.humidity,
+      conditionText: conditionText ?? this.conditionText,
       iconPath: iconPath ?? this.iconPath,
     );
   }
 
-  factory WeatherLocation.fromJson(Map<String, dynamic> json) {
-    log(json.toString());
-
-    final String rawIconPath = json['current']['condition']['icon'];
-
-    final String pngNumber = rawIconPath.substring(rawIconPath.length - 7);
-
-    String iconPath = '';
-
-    if (rawIconPath.contains('day')) {
-      iconPath = 'assets/day/$pngNumber';
-    } else {
-      iconPath = 'assets/night/$pngNumber';
-    }
-
+  WeatherLocation fromJson(Map<String, dynamic> data) {
     return WeatherLocation(
-      locationName: json['location']['name'],
-      temp_c: json['current']['temp_c'],
-      temp_f: json['current']['temp_f'],
-      lastUpdated: DateTime.parse(json['current']['last_updated']),
-      wind_kph: json['current']['wind_kph'],
-      humidity: json['current']['humidity'],
-      condition: json['current']['condition']['text'],
+      name: data['location']['name'],
+      lastUpdated: data['current']['last_updated'],
+      tempC: data['current']['temp_c'],
+      windKph: data['current']['wind_kph'],
+      humidity: data['current']['humidity'],
+      conditionText: data['current']['condition']['text'],
       iconPath: iconPath,
     );
   }
