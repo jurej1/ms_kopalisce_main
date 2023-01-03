@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,7 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
         padding: const EdgeInsets.all(20),
         child: BlocConsumer<FortuneWheelCubit, FortuneWheelState>(
           listener: (context, state) {
-            if (state.status == FortuneWheelStatus.spinning) {
+            if (state.status == FortuneWheelStatus.done) {
               BlocProvider.of<FortuneWheelWinnerPickerBloc>(context).add(FortuneWheelWinnerPicked(state.selectedIndex));
             }
           },
