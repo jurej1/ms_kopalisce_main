@@ -1,1 +1,1 @@
-export 'quiz_view.dart';
+export 'quiz_home_view.dart';
