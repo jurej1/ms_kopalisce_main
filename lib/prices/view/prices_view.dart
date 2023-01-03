@@ -22,6 +22,11 @@ class PricesView extends StatelessWidget {
             },
             child: const Text('Bathroom Services'),
           ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {},
+            child: const Text('Food Prices'),
+          ),
         ],
       ),
     );
