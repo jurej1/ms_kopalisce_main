@@ -16,6 +16,14 @@ class QuizeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            //Start the Quiz
+          },
+          child: const Text('Start Quiz'),
+        ),
+      ),
       bottomNavigationBar: const HomeViewSelector(),
     );
   }
