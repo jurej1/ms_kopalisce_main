@@ -26,6 +26,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBody: true,
       body: BlocBuilder<HomeViewSelectorCubit, HomeViewSelectorState>(
         builder: (context, state) {
           if (state.isHome) {
