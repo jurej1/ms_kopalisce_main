@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ms_kopalisce_main/home/home.dart';
 import 'package:ms_kopalisce_main/prices/prices.dart';
 import 'package:ms_kopalisce_main/vouchers/view/view.dart';
-import 'package:ms_kopalisce_main/weather/blocs/weather/weather_bloc.dart';
 import 'package:ms_kopalisce_main/weather/view/view.dart';
-import 'package:weather_repository/weather_repository.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView._({Key? key}) : super(key: key);
