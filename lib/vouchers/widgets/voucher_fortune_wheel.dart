@@ -64,6 +64,8 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
     return BlocListener<FortuneWheelWinnerPickerBloc, FortuneWheelWinnerPickerState>(
       listener: (context, state) {
         if (state is FortuneWheelWinnerPickerLoadSuccess) {
+          //TODO add the item to the list of all vouchers
+
           Navigator.of(context).push(FortuneWinnerDisplayer.route(context, state.item)).then(
             (value) {
               Navigator.pop(context);
