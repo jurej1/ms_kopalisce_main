@@ -8,7 +8,11 @@ part 'fortune_wheel_state.dart';
 class FortuneWheelCubit extends Cubit<FortuneWheelState> {
   FortuneWheelCubit({required List<Voucher> vouchers})
       : super(
-          FortuneWheelState(items: vouchers),
+          FortuneWheelState(
+            items: vouchers,
+            selectedIndex: 0,
+            status: FortuneWheelStatus.initial,
+          ),
         );
 
   void animationStarted() {
@@ -17,5 +21,9 @@ class FortuneWheelCubit extends Cubit<FortuneWheelState> {
 
   void animationCompleted() {
     emit(state.copyWith(status: FortuneWheelStatus.done));
+  }
+
+  void selectedIndexUpdated(int index) {
+    emit(state.copyWith(selectedIndex: index));
   }
 }

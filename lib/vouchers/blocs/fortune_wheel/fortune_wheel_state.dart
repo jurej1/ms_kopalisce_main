@@ -7,21 +7,28 @@ enum FortuneWheelStatus {
 }
 
 class FortuneWheelState extends Equatable {
-  const FortuneWheelState({this.status = FortuneWheelStatus.initial, required this.items});
+  const FortuneWheelState({
+    required this.status,
+    required this.items,
+    required this.selectedIndex,
+  });
 
   final FortuneWheelStatus status;
   final List<Voucher> items;
+  final int selectedIndex;
 
   @override
-  List<Object> get props => [status, items];
+  List<Object> get props => [status, items, selectedIndex];
 
   FortuneWheelState copyWith({
     FortuneWheelStatus? status,
     List<Voucher>? items,
+    int? selectedIndex,
   }) {
     return FortuneWheelState(
       status: status ?? this.status,
       items: items ?? this.items,
+      selectedIndex: selectedIndex ?? this.selectedIndex,
     );
   }
 
