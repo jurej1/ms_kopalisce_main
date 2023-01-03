@@ -47,7 +47,9 @@ class VoucherViewList extends StatelessWidget {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(VoucherWheelView.route(context));
+        },
         child: const Icon(Icons.circle),
       ),
     );
