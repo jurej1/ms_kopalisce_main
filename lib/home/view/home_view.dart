@@ -25,23 +25,19 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      body: BlocBuilder<HomeViewSelectorCubit, HomeViewSelectorState>(
-        builder: (context, state) {
-          if (state.isHome) {
-            return const InfoView();
-          } else if (state.isWeather) {
-            return const WeatherView();
-          } else if (state.isCoupons) {
-            return VoucherViewList.providers();
-          } else if (state.isPrices) {
-            return const PricesView();
-          }
-          return Container();
-        },
-      ),
-      bottomNavigationBar: const HomeViewSelector(),
+    return BlocBuilder<HomeViewSelectorCubit, HomeViewSelectorState>(
+      builder: (context, state) {
+        if (state.isHome) {
+          return const InfoView();
+        } else if (state.isWeather) {
+          return const WeatherView();
+        } else if (state.isCoupons) {
+          return VoucherViewList.providers();
+        } else if (state.isPrices) {
+          return const PricesView();
+        }
+        return Container();
+      },
     );
   }
 }

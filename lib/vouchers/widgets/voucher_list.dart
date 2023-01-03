@@ -1,6 +1,5 @@
 import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:ms_kopalisce_main/vouchers/vouchers.dart';
 
 class VoucherList extends StatefulWidget {
@@ -43,7 +42,7 @@ class _VoucherListState extends State<VoucherList> {
         top: size.height * 0.15,
         left: 15,
         right: 15,
-        bottom: 20,
+        bottom: 20 + kToolbarHeight,
       ),
       itemCount: widget.vouchers.length,
       separatorBuilder: (context, index) {

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ms_kopalisce_main/vouchers/vouchers.dart';
 
+import '../../home/home.dart';
+
 class VoucherViewList extends StatelessWidget {
   const VoucherViewList._({Key? key}) : super(key: key);
 
@@ -21,6 +23,7 @@ class VoucherViewList extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return Scaffold(
+      extendBody: false,
       body: Stack(
         children: [
           SizedBox(
@@ -46,6 +49,7 @@ class VoucherViewList extends StatelessWidget {
           ),
         ],
       ),
+      bottomNavigationBar: const HomeViewSelector(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.of(context).push(VoucherWheelView.route(context));

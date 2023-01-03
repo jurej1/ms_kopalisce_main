@@ -6,17 +6,21 @@ class InfoView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 40),
-          const OpenTime(),
-          const SizedBox(height: 10),
-          const AdditionalInfo(),
-        ],
+    return Scaffold(
+      extendBody: true,
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 40),
+            const OpenTime(),
+            const SizedBox(height: 10),
+            const AdditionalInfo(),
+          ],
+        ),
       ),
+      bottomNavigationBar: const HomeViewSelector(),
     );
   }
 }
