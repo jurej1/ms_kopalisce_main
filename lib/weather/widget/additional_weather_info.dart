@@ -47,7 +47,7 @@ class AdditionalWeatherInfo extends StatelessWidget {
             child: Text(
               units,
               style: const TextStyle(
-                fontSize: 11,
+                fontSize: 12,
                 color: Colors.white,
                 letterSpacing: 0.5,
               ),
@@ -56,7 +56,7 @@ class AdditionalWeatherInfo extends StatelessWidget {
           const SizedBox(height: 2),
           Container(
             width: size.width * 0.3,
-            height: 3,
+            height: 5,
             decoration: BoxDecoration(
               color: Colors.white.withOpacity(0.6),
               borderRadius: const BorderRadius.all(
