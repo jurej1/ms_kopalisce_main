@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../prices.dart';
 
 class FoodPricesView extends StatelessWidget {
   const FoodPricesView({Key? key}) : super(key: key);
@@ -13,6 +16,37 @@ class FoodPricesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: BlocBuilder<FoodPricesListBloc, FoodPricesListState>(
+        builder: (context, state) {
+          if (state is FoodPricesListLoading) {
+            return const _LoadingScreen();
+          } else if (state is FoodPricesListFail) {
+            return const _ErrorScreen();
+          } else if (state is FoodPricesListLoadSucess) {}
+          return Container();
+        },
+      ),
+    );
+  }
+}
+
+class _LoadingScreen extends StatelessWidget {
+  const _LoadingScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+}
+
+class _ErrorScreen extends StatelessWidget {
+  const _ErrorScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(child: Text('Sorry But there was an error'));
   }
 }
