@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'models/models.dart';
@@ -11,11 +10,8 @@ extension AuthenticationStatusX on AuthenticationStatus {
 
 class AuthenticationRepository {
   final FirebaseAuth _firebaseAuth;
-  final FirebaseFirestore _firebaseFirestore;
 
-  AuthenticationRepository({FirebaseAuth? firebaseAuth, FirebaseFirestore? firebaseFirestore})
-      : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance,
-        _firebaseFirestore = firebaseFirestore ?? FirebaseFirestore.instance;
+  AuthenticationRepository({FirebaseAuth? firebaseAuth}) : _firebaseAuth = firebaseAuth ?? FirebaseAuth.instance;
 
   Stream<AuthenticationUser?> get authenticationUser {
     return _firebaseAuth.authStateChanges().map(
