@@ -23,7 +23,9 @@ class FoodPricesView extends StatelessWidget {
             return const _LoadingScreen();
           } else if (state is FoodPricesListFail) {
             return const _ErrorScreen();
-          } else if (state is FoodPricesListLoadSucess) {}
+          } else if (state is FoodPricesListLoadSucess) {
+            return FoodPricesListBuilder(items: state.items);
+          }
           return Container();
         },
       ),
