@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:price_repository/price_repository.dart';
 
 import '../prices.dart';
 
@@ -27,7 +28,7 @@ class BathroomServicesView extends StatelessWidget {
           } else if (state is BathroomServicesLoadFail) {
             return const _ErrorScreen();
           } else if (state is BathroomServicesLoadSuccess) {
-            return BathroomServicesBuilder(loadSuccess: state);
+            return BathroomServicesBuilder(tickets: state.tickets);
           }
           return Container();
         },
