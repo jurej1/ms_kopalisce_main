@@ -18,9 +18,11 @@ packages:
   authentication_repository:
     dependency: "direct main"
     description:
-      path: "packages/authentication_repository"
-      relative: true
-    source: path
+      path: "."
+      ref: master
+      resolved-ref: "77c3dc5f6f6fc6f52c812fe3e912a0268788caab"
+      url: "https://github.com/jurej1/authentication_repository.git"
+    source: git
     version: "0.0.0"
   bloc:
     dependency: "direct main"

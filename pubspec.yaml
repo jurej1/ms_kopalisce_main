@@ -8,8 +8,6 @@ environment:
   sdk: ">=2.17.5 <3.0.0"
 
 dependencies:
-  authentication_repository:
-    path: packages/authentication_repository
   bloc: 7.0.0
   flutter_bloc: 7.0.0
   cloud_firestore: ^4.3.1
@@ -24,7 +22,9 @@ dependencies:
   http: ^0.13.5
   weather_icons: ^3.0.0
   weather_repository:
-    path: packages/weather_repository
+    git:
+      url: https://github.com/jurej1/weather_repository.git
+      ref: master
   coupon_repository:
     git:
       url: https://github.com/jurej1/coupon_repository.git
@@ -32,6 +32,10 @@ dependencies:
   price_repository:
     git:
       url: https://github.com/jurej1/price_repository.git
+      ref: master
+  authentication_repository:
+    git: 
+      url: https://github.com/jurej1/authentication_repository.git
       ref: master
 
 dev_dependencies:
