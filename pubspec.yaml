@@ -8,34 +8,35 @@ environment:
   sdk: ">=2.17.5 <3.0.0"
 
 dependencies:
+  authentication_repository:
+    git:
+      url: https://github.com/jurej1/authentication_repository.git
+      ref: master
   bloc: 7.0.0
-  flutter_bloc: 7.0.0
   cloud_firestore: ^4.3.1
+  coupon_repository:
+    git:
+      url: https://github.com/jurej1/coupon_repository.git
+      ref: master
   cupertino_icons: ^1.0.2
   equatable: ^2.0.5
   firebase_auth: ^4.2.4
   firebase_core: ^2.3.0
   flutter:
     sdk: flutter
+  flutter_bloc: 7.0.0
   flutter_flushbar: ^0.0.2
+  flutter_fortune_wheel: ^1.2.0
   formz: ^0.4.1
   http: ^0.13.5
-  weather_icons: ^3.0.0
-  weather_repository:
-    git:
-      url: https://github.com/jurej1/weather_repository.git
-      ref: master
-  coupon_repository:
-    git:
-      url: https://github.com/jurej1/coupon_repository.git
-      ref: master
   price_repository:
     git:
       url: https://github.com/jurej1/price_repository.git
       ref: master
-  authentication_repository:
-    git: 
-      url: https://github.com/jurej1/authentication_repository.git
+  weather_icons: ^3.0.0
+  weather_repository:
+    git:
+      url: https://github.com/jurej1/weather_repository.git
       ref: master
 
 dev_dependencies:
@@ -43,11 +44,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-
 flutter:
   uses-material-design: true
-
-
-
-
- 

@@ -20,30 +20,36 @@ class VoucherViewList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
-    return Stack(
-      children: [
-        SizedBox(
-          height: size.height,
-          width: size.width,
-          child: BlocBuilder<VoucherViewSelectorCubit, VoucherStatus>(
-            builder: (context, state) {
-              if (state == VoucherStatus.valid) {
-                return const _VoucherValidListDisplayer();
-              } else if (state == VoucherStatus.expired) {
-                return const _VoucherExpiredListDisplayer();
-              } else if (state == VoucherStatus.used) {
-                return const _VoucherUsedListDisplayer();
-              }
+    return Scaffold(
+      body: Stack(
+        children: [
+          SizedBox(
+            height: size.height,
+            width: size.width,
+            child: BlocBuilder<VoucherViewSelectorCubit, VoucherStatus>(
+              builder: (context, state) {
+                if (state == VoucherStatus.valid) {
+                  return const _VoucherValidListDisplayer();
+                } else if (state == VoucherStatus.expired) {
+                  return const _VoucherExpiredListDisplayer();
+                } else if (state == VoucherStatus.used) {
+                  return const _VoucherUsedListDisplayer();
+                }
 
-              return Container();
-            },
+                return Container();
+              },
+            ),
           ),
-        ),
-        Positioned(
-          top: size.height * 0.07,
-          child: const VoucherTabBar(),
-        ),
-      ],
+          Positioned(
+            top: size.height * 0.07,
+            child: const VoucherTabBar(),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Icon(Icons.circle),
+      ),
     );
   }
 }
