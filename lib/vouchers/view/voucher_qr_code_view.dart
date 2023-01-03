@@ -2,8 +2,8 @@ import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-class FortuneWinnerDisplayer extends StatelessWidget {
-  const FortuneWinnerDisplayer({
+class VoucherQrCodeView extends StatelessWidget {
+  const VoucherQrCodeView({
     Key? key,
     required this.voucher,
   }) : super(key: key);
@@ -14,7 +14,7 @@ class FortuneWinnerDisplayer extends StatelessWidget {
     return PageRouteBuilder(
       opaque: false,
       pageBuilder: (context, _, __) {
-        return FortuneWinnerDisplayer(voucher: voucher);
+        return VoucherQrCodeView(voucher: voucher);
       },
     );
   }

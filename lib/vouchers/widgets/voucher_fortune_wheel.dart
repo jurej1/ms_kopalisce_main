@@ -66,7 +66,7 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
         if (state is FortuneWheelWinnerPickerLoadSuccess) {
           //TODO add the item to the list of all vouchers
 
-          Navigator.of(context).push(FortuneWinnerDisplayer.route(context, state.item)).then(
+          Navigator.of(context).push(VoucherQrCodeView.route(context, state.item)).then(
             (value) {
               Navigator.pop(context);
             },
