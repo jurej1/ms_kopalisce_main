@@ -11,9 +11,7 @@ class WeatherView extends StatelessWidget {
     return BlocBuilder<WeatherBloc, WeatherState>(
       builder: (context, state) {
         if (state is WeatherStateSuccess) {
-          return WeatherDisplayer(
-            weatherLocation: state.location,
-          );
+          return WeatherDisplayer(weatherLocation: state.location);
         } else if (state is WeatherStateLoading) {
           return const Center(
             child: Center(

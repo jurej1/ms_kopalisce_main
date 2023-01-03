@@ -18,10 +18,6 @@ class HomeView extends StatelessWidget {
             BlocProvider(
               create: (context) => HomeViewSelectorCubit(),
             ),
-            BlocProvider(
-              create: (context) =>
-                  WeatherBloc(weatherRepository: RepositoryProvider.of<WeatherRepository>(context))..add(const LoadWeatherDataRequested()),
-            )
           ],
           child: const HomeView._(),
         );
