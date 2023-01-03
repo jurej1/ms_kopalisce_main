@@ -366,9 +366,11 @@ packages:
   weather_repository:
     dependency: "direct main"
     description:
-      path: "packages/weather_repository"
-      relative: true
-    source: path
+      path: "."
+      ref: master
+      resolved-ref: b1e6110368f1eefb6a7c67d1224f5688e1121e73
+      url: "https://github.com/jurej1/weather_repository.git"
+    source: git
     version: "0.0.0"
 sdks:
   dart: ">=2.17.5 <3.0.0"
