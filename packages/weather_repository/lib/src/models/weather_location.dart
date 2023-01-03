@@ -52,7 +52,16 @@ class WeatherLocation extends Equatable {
     );
   }
 
-  WeatherLocation fromJson(Map<String, dynamic> data) {
+  static WeatherLocation fromJson(Map<String, dynamic> data) {
+    String iconPathSource = data['current']['condition']['icon'];
+
+    String iconFileNumber = iconPathSource.substring(iconPathSource.length - 7);
+
+    if (iconPathSource.contains('day')) {
+      iconFileNumber = 'lib/assets/day/' + iconFileNumber;
+    } else {
+      iconFileNumber = 'lib/assets/night/' + iconFileNumber;
+    }
     return WeatherLocation(
       name: data['location']['name'],
       lastUpdated: data['current']['last_updated'],
@@ -60,7 +69,7 @@ class WeatherLocation extends Equatable {
       windKph: data['current']['wind_kph'],
       humidity: data['current']['humidity'],
       conditionText: data['current']['condition']['text'],
-      iconPath: iconPath,
+      iconPath: iconFileNumber,
     );
   }
 }

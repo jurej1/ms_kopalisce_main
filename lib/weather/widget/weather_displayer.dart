@@ -23,7 +23,7 @@ class WeatherDisplayer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              weatherLocation.locationName,
+              weatherLocation.name,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -41,7 +41,7 @@ class WeatherDisplayer extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             Text(
-              weatherLocation.temp_c.toStringAsFixed(0) + '°',
+              weatherLocation.tempC.toStringAsFixed(0) + '°',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 70,
@@ -52,13 +52,13 @@ class WeatherDisplayer extends StatelessWidget {
               children: [
                 Image(
                   image: AssetImage(
-                    weatherLocation.iconPath!,
+                    weatherLocation.iconPath,
                     package: 'weather_repository',
                   ),
                 ),
                 const SizedBox(width: 10),
                 Text(
-                  weatherLocation.condition ?? '',
+                  weatherLocation.conditionText,
                   style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
@@ -85,14 +85,14 @@ class WeatherDisplayer extends StatelessWidget {
                 _AdditionalInfoDisplayer(
                   title: 'Wind',
                   units: 'km/h',
-                  val: (weatherLocation.wind_kph ?? 0) / 40,
-                  value: weatherLocation.wind_kph?.toStringAsFixed(0) ?? '',
+                  val: (weatherLocation.windKph) / 40,
+                  value: weatherLocation.windKph.toStringAsFixed(0),
                 ),
                 _AdditionalInfoDisplayer(
                   title: 'Humidity',
                   units: '%',
-                  val: (weatherLocation.humidity ?? 0) / 100,
-                  value: weatherLocation.humidity?.toStringAsFixed(0) ?? '',
+                  val: (weatherLocation.humidity) / 100,
+                  value: weatherLocation.humidity.toStringAsFixed(0),
                 ),
               ],
             )
