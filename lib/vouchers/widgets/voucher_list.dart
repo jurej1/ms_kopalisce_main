@@ -1,5 +1,7 @@
 import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:ms_kopalisce_main/vouchers/vouchers.dart';
 
 class VoucherList extends StatefulWidget {
   const VoucherList({
@@ -37,17 +39,19 @@ class _VoucherListState extends State<VoucherList> {
     final Size size = MediaQuery.of(context).size;
     return ListView.separated(
       controller: _scrollController,
-      padding: EdgeInsets.only(top: size.height * 0.15),
-      itemCount: 20,
+      padding: EdgeInsets.only(
+        top: size.height * 0.15,
+        left: 15,
+        right: 15,
+        bottom: 20,
+      ),
+      itemCount: widget.vouchers.length,
       separatorBuilder: (context, index) {
-        return Container(height: 20);
+        return Container(height: 10);
       },
       itemBuilder: (context, index) {
-        return Container(
-          color: Colors.red,
-          height: 40,
-          width: double.infinity,
-        );
+        final item = widget.vouchers[index];
+        return VoucherListItem(item: item);
       },
     );
   }
