@@ -64,7 +64,7 @@ class WeatherLocation extends Equatable {
     }
     return WeatherLocation(
       name: data['location']['name'],
-      lastUpdated: data['current']['last_updated'],
+      lastUpdated: DateTime.parse(data['current']['last_updated']),
       tempC: data['current']['temp_c'],
       windKph: data['current']['wind_kph'],
       humidity: data['current']['humidity'],

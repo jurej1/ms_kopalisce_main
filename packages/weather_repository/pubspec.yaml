@@ -13,5 +13,5 @@ dependencies:
 
 flutter:
   assets:
-    - lib/assets/day
-    - lib/assets/night
+    - assets/day
+    - assets/night
