@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:developer';
-
 import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -66,7 +64,7 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
     return BlocListener<FortuneWheelWinnerPickerBloc, FortuneWheelWinnerPickerState>(
       listener: (context, state) {
         if (state is FortuneWheelWinnerPickerLoadSuccess) {
-          Navigator.of(context).push(_WinnerDisplayer.route(context, state.item)).then(
+          Navigator.of(context).push(FortuneWinnerDisplayer.route(context, state.item)).then(
             (value) {
               Navigator.pop(context);
             },
@@ -114,39 +112,6 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
               );
             },
           ),
-        ),
-      ),
-    );
-  }
-}
-
-class _WinnerDisplayer extends StatelessWidget {
-  const _WinnerDisplayer({
-    Key? key,
-    required this.voucher,
-  }) : super(key: key);
-
-  final VoucherUser voucher;
-
-  static route(BuildContext context, VoucherUser voucher) {
-    return MaterialPageRoute(
-      builder: (context) {
-        return _WinnerDisplayer(voucher: voucher);
-      },
-    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final Size size = MediaQuery.of(context).size;
-    return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.5),
-      body: Center(
-        child: Container(
-          width: size.width * 0.8,
-          height: size.width * 0.8,
-          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
-          child: Text(voucher.name),
         ),
       ),
     );

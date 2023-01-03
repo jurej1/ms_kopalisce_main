@@ -33,6 +33,7 @@ dependencies:
     git:
       url: https://github.com/jurej1/price_repository.git
       ref: master
+  qr_flutter: ^4.0.0
   weather_icons: ^3.0.0
   weather_repository:
     git:
