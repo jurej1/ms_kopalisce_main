@@ -24,7 +24,9 @@ class PricesView extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(FoodPricesView.route(context));
+            },
             child: const Text('Food Prices'),
           ),
         ],
