@@ -3,6 +3,7 @@ import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ms_kopalisce_main/prices/blocs/bathroom_services/bathroom_services_bloc.dart';
+import 'package:ms_kopalisce_main/prices/blocs/blocs.dart';
 import 'package:price_repository/price_repository.dart';
 import 'package:weather_repository/weather_repository.dart';
 
@@ -55,6 +56,11 @@ class _AppState extends State<App> {
             create: (context) => BathroomServicesBloc(
               priceRepository: RepositoryProvider.of<PriceRepository>(context),
             )..add(BathroomServicesLoadRequested()),
+          ),
+          BlocProvider(
+            create: (context) => FoodPricesListBloc(
+              priceRepository: RepositoryProvider.of<PriceRepository>(context),
+            )..add(FoodPricesListLoadRequested()),
           )
         ],
         child: MaterialApp(
