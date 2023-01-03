@@ -63,46 +63,90 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.all(20),
-        child: BlocConsumer<FortuneWheelCubit, FortuneWheelState>(
-          listener: (context, state) {
-            if (state.status == FortuneWheelStatus.done) {
-              BlocProvider.of<FortuneWheelWinnerPickerBloc>(context).add(FortuneWheelWinnerPicked(state.selectedIndex));
-            }
-          },
-          builder: (context, state) {
-            return FortuneWheel(
-              selected: controller.stream,
-              animateFirst: false,
-              onAnimationStart: () {
-                BlocProvider.of<FortuneWheelCubit>(context).animationStarted();
-              },
-              onAnimationEnd: () {
-                BlocProvider.of<FortuneWheelCubit>(context).animationCompleted();
-              },
-              physics: CircularPanPhysics(
-                duration: const Duration(seconds: 1),
-                curve: Curves.decelerate,
-              ),
-              indicators: const <FortuneIndicator>[
-                FortuneIndicator(
-                  alignment: Alignment.topCenter,
-                  child: TriangleIndicator(
-                    color: Colors.orange,
-                  ),
+    return BlocListener<FortuneWheelWinnerPickerBloc, FortuneWheelWinnerPickerState>(
+      listener: (context, state) {
+        if (state is FortuneWheelWinnerPickerLoadSuccess) {
+          Navigator.of(context).push(_WinnerDisplayer.route(context, state.item)).then(
+            (value) {
+              Navigator.pop(context);
+            },
+          );
+        }
+      },
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(20),
+          child: BlocConsumer<FortuneWheelCubit, FortuneWheelState>(
+            listener: (context, state) {
+              if (state.status == FortuneWheelStatus.done) {
+                BlocProvider.of<FortuneWheelWinnerPickerBloc>(context).add(FortuneWheelWinnerPicked(state.selectedIndex));
+              }
+            },
+            builder: (context, state) {
+              return FortuneWheel(
+                selected: controller.stream,
+                animateFirst: false,
+                onAnimationStart: () {
+                  BlocProvider.of<FortuneWheelCubit>(context).animationStarted();
+                },
+                onAnimationEnd: () {
+                  BlocProvider.of<FortuneWheelCubit>(context).animationCompleted();
+                },
+                physics: CircularPanPhysics(
+                  duration: const Duration(seconds: 1),
+                  curve: Curves.decelerate,
                 ),
-              ],
-              items: state.items
-                  .map(
-                    (e) => FortuneItem(
-                      child: Text(e.name),
+                indicators: const <FortuneIndicator>[
+                  FortuneIndicator(
+                    alignment: Alignment.topCenter,
+                    child: TriangleIndicator(
+                      color: Colors.orange,
                     ),
-                  )
-                  .toList(),
-            );
-          },
+                  ),
+                ],
+                items: state.items
+                    .map(
+                      (e) => FortuneItem(
+                        child: Text(e.name),
+                      ),
+                    )
+                    .toList(),
+              );
+            },
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _WinnerDisplayer extends StatelessWidget {
+  const _WinnerDisplayer({
+    Key? key,
+    required this.voucher,
+  }) : super(key: key);
+
+  final VoucherUser voucher;
+
+  static route(BuildContext context, VoucherUser voucher) {
+    return MaterialPageRoute(
+      builder: (context) {
+        return _WinnerDisplayer(voucher: voucher);
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      backgroundColor: Colors.black.withOpacity(0.5),
+      body: Center(
+        child: Container(
+          width: size.width * 0.8,
+          height: size.width * 0.8,
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(10)),
+          child: Text(voucher.name),
         ),
       ),
     );
