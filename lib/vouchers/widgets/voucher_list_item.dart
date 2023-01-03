@@ -1,6 +1,7 @@
 import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:ms_kopalisce_main/vouchers/view/view.dart';
 
 class VoucherListItem extends StatelessWidget {
   const VoucherListItem({
@@ -71,7 +72,9 @@ class VoucherListItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(VoucherQrCodeView.route(context, item));
+                  },
                   child: const Text(
                     'QR',
                     style: TextStyle(
