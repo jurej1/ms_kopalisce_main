@@ -36,9 +36,14 @@ class QuestionDisplayer extends StatelessWidget {
             message: state.isSelectedAnwserCorrect ? 'Correct' : 'Wrong',
             flushbarStyle: FlushbarStyle.FLOATING,
             titleColor: state.isSelectedAnwserCorrect ? Colors.green : Colors.red,
+            borderRadius: BorderRadius.circular(10),
             isDismissible: false,
-            duration: const Duration(seconds: 3),
-          )..show(context);
+            margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
+            duration: const Duration(seconds: 2),
+            animationDuration: const Duration(milliseconds: 300),
+          ).show(context).then((value) {
+            BlocProvider.of<QuizDisplayerCubit>(context).activeQuestionForward();
+          });
         }
       },
       builder: (context, state) {
