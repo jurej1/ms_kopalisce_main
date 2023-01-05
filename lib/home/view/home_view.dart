@@ -37,7 +37,7 @@ class HomeView extends StatelessWidget {
         } else if (state.isPrices) {
           return const PricesView();
         } else if (state.isQuiz) {
-          return const QuizeView();
+          return const QuizHomeView();
         }
         return Container();
       },

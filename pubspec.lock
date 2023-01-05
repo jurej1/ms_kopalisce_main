@@ -92,7 +92,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: ad268158922723110b7b9a73135e2c9b9c33333c
+      resolved-ref: "950f533c732f23a8a29c95f3b5184bcf4cd735cd"
       url: "https://github.com/jurej1/coupon_repository.git"
     source: git
     version: "0.0.0"
@@ -298,7 +298,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "7c66dadeb06511c0a3ec51e451a97271f7acfa10"
+      resolved-ref: "3b76bb0db540eab9f1abe4c468398cd4b40c7202"
       url: "https://github.com/jurej1/price_repository.git"
     source: git
     version: "0.0.0"
@@ -335,7 +335,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: e6c46a35ea9e112a0395762d0ae20afb13ee484d
+      resolved-ref: "04d82898e2479a22e0a7fab855bf132aac8ff45a"
       url: "https://github.com/jurej1/quiz_repository.git"
     source: git
     version: "0.0.0"

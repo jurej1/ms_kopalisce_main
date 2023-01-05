@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 
 import '../../home/home.dart';
+import 'view.dart';
 
-class QuizeView extends StatelessWidget {
-  const QuizeView({Key? key}) : super(key: key);
+class QuizHomeView extends StatelessWidget {
+  const QuizHomeView({Key? key}) : super(key: key);
 
   static route(BuildContext context) {
     return MaterialPageRoute(
       builder: (context) {
-        return const QuizeView();
+        return const QuizHomeView();
       },
     );
   }
@@ -20,6 +21,7 @@ class QuizeView extends StatelessWidget {
         child: ElevatedButton(
           onPressed: () {
             //Start the Quiz
+            Navigator.of(context).push(QuizView.route(context));
           },
           child: const Text('Start Quiz'),
         ),
