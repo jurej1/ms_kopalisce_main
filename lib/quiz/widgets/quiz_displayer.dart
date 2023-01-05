@@ -29,9 +29,11 @@ class QuizDisplayer extends StatelessWidget {
                 color: Colors.blue,
               ),
               Expanded(
-                child: QuestionDisplayer.provider(
-                  state.question[state.activeQuestionIndex],
-                ),
+                child: state.status.isPlaying
+                    ? QuestionDisplayer.provider(
+                        state.question[state.activeQuestionIndex],
+                      )
+                    : const QuizCompletedDisplayer(),
               ),
             ],
           ),

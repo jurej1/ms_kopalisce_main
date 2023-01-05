@@ -2,6 +2,11 @@ part of 'quiz_displayer_cubit.dart';
 
 enum QuizDisplayerStatus { pure, playing, done }
 
+extension QuizDisplayerStatusX on QuizDisplayerStatus {
+  bool get isPlaying => this == QuizDisplayerStatus.playing;
+  bool get isDone => this == QuizDisplayerStatus.done;
+}
+
 class QuizDisplayerState extends Equatable {
   const QuizDisplayerState({
     required this.question,
