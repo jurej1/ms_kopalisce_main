@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:equatable/equatable.dart';
@@ -28,6 +30,8 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
       QuerySnapshot snapshot = await _quizRepository.loadQuestion();
 
       List<Question> questions = snapshot.docs.map((e) => Question.fromDocumentSnapshot(e)).toList();
+
+      log('questions length: ${questions.length}');
 
       yield QuizLoadSuccess(questions);
     } catch (error) {

@@ -19,7 +19,7 @@ class QuizDisplayerCubit extends Cubit<QuizDisplayerState> {
     final maxIndex = state.question.length - 1;
     final nextIndex = state.activeQuestionIndex + 1;
 
-    if (nextIndex < maxIndex) {
+    if (nextIndex <= maxIndex) {
       emit(
         state.copyWith(
           activeQuestionIndex: nextIndex,

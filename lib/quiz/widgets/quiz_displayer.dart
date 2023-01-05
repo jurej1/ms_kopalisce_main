@@ -45,7 +45,7 @@ class QuizDisplayer extends StatelessWidget {
                   child: FractionallySizedBox(
                     alignment: Alignment.centerLeft,
                     heightFactor: 1,
-                    widthFactor: (state.activeQuestionIndex + 1) / state.question.length,
+                    widthFactor: (state.activeQuestionIndex) / state.question.length,
                     child: Container(
                       color: Colors.blue,
                     ),
