@@ -15,7 +15,7 @@ class QuizView extends StatelessWidget {
             BlocProvider(
               create: (context) => QuizBloc(
                 quizRepository: RepositoryProvider.of<QuizRepository>(context),
-              ),
+              )..add(QuizLoadRequested()),
             ),
           ],
           child: const QuizView(),
@@ -38,6 +38,8 @@ class QuizView extends StatelessWidget {
               return const _LoadingScreen();
             } else if (state is QuizFail) {
               return const _ErrorScreen();
+            } else if (state is QuizLoadSuccess) {
+              return const QuizDisplayer();
             }
 
             return Container();
