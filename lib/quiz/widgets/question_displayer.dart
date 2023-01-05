@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ms_kopalisce_main/quiz/blocs/blocs.dart';
+import 'package:flutter_flushbar/flutter_flushbar.dart';
 import 'package:ms_kopalisce_main/quiz/quiz.dart';
 import 'package:quiz_repository/quiz_repository.dart';
 
@@ -19,7 +19,28 @@ class QuestionDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return BlocBuilder<QuestionDisplayerCubit, QuestionDisplayerState>(
+    return BlocConsumer<QuestionDisplayerCubit, QuestionDisplayerState>(
+      listener: (context, state) {
+        if (state.status.isAnswerSelected) {
+          // ignore: avoid_single_cascade_in_expression_statements
+          Flushbar(
+            icon: state.isSelectedAnwserCorrect
+                ? const Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  )
+                : const Icon(
+                    Icons.close,
+                    color: Colors.red,
+                  ),
+            message: state.isSelectedAnwserCorrect ? 'Correct' : 'Wrong',
+            flushbarStyle: FlushbarStyle.FLOATING,
+            titleColor: state.isSelectedAnwserCorrect ? Colors.green : Colors.red,
+            isDismissible: false,
+            duration: const Duration(seconds: 3),
+          )..show(context);
+        }
+      },
       builder: (context, state) {
         return ListView(
           shrinkWrap: true,
