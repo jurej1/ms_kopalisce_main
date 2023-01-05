@@ -39,7 +39,7 @@ class QuizView extends StatelessWidget {
             } else if (state is QuizFail) {
               return const _ErrorScreen();
             } else if (state is QuizLoadSuccess) {
-              return const QuizDisplayer();
+              return QuizDisplayer.provider(state.questions);
             }
 
             return Container();
