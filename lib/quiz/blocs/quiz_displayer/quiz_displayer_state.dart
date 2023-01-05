@@ -1,6 +1,6 @@
 part of 'quiz_displayer_cubit.dart';
 
-enum QuestionDisplayerStatus { pure, playing, done }
+enum QuizDisplayerStatus { pure, playing, done }
 
 class QuizDisplayerState extends Equatable {
   const QuizDisplayerState({
@@ -11,7 +11,7 @@ class QuizDisplayerState extends Equatable {
 
   final List<Question> question;
   final int activeQuestionIndex;
-  final QuestionDisplayerStatus status;
+  final QuizDisplayerStatus status;
 
   @override
   List<Object> get props => [question, activeQuestionIndex];
@@ -19,7 +19,7 @@ class QuizDisplayerState extends Equatable {
   QuizDisplayerState copyWith({
     List<Question>? question,
     int? activeQuestionIndex,
-    QuestionDisplayerStatus? status,
+    QuizDisplayerStatus? status,
   }) {
     return QuizDisplayerState(
       question: question ?? this.question,

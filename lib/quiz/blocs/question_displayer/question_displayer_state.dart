@@ -2,6 +2,10 @@ part of 'question_displayer_cubit.dart';
 
 enum QuestionDisplayerStatus { pure, answerSelected }
 
+extension QuestionDisplayerStatusX on QuestionDisplayerStatus {
+  bool get isAnswerSelected => this == QuestionDisplayerStatus.answerSelected;
+}
+
 class QuestionDisplayerState extends Equatable {
   const QuestionDisplayerState({
     required this.question,

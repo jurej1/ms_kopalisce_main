@@ -11,7 +11,7 @@ class QuizDisplayerCubit extends Cubit<QuizDisplayerState> {
           QuizDisplayerState(
             question: questions,
             activeQuestionIndex: 0,
-            status: QuestionDisplayerStatus.pure,
+            status: QuizDisplayerStatus.pure,
           ),
         );
 
@@ -23,14 +23,14 @@ class QuizDisplayerCubit extends Cubit<QuizDisplayerState> {
       emit(
         state.copyWith(
           activeQuestionIndex: nextIndex,
-          status: QuestionDisplayerStatus.playing,
+          status: QuizDisplayerStatus.playing,
         ),
       );
     } else {
       emit(
         state.copyWith(
           activeQuestionIndex: nextIndex,
-          status: QuestionDisplayerStatus.done,
+          status: QuizDisplayerStatus.done,
         ),
       );
     }
