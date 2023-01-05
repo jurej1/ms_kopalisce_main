@@ -22,6 +22,8 @@ class QuestionDisplayer extends StatelessWidget {
     return BlocConsumer<QuestionDisplayerCubit, QuestionDisplayerState>(
       listener: (context, state) {
         if (state.status.isAnswerSelected) {
+          BlocProvider.of<QuizAnswerRecordCubit>(context).anwserAdded(state.isSelectedAnwserCorrect);
+
           // ignore: avoid_single_cascade_in_expression_statements
           Flushbar(
             icon: state.isSelectedAnwserCorrect

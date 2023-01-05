@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 
-class QuizAnwserRecordCubit extends Cubit<List<bool>> {
-  QuizAnwserRecordCubit() : super([]);
+class QuizAnswerRecordCubit extends Cubit<List<bool>> {
+  QuizAnswerRecordCubit() : super([]);
 
   anwserAdded(bool anwser) {
     final stateList = List<bool>.from(state);

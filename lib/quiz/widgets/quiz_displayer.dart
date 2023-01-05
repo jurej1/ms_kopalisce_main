@@ -7,8 +7,15 @@ class QuizDisplayer extends StatelessWidget {
   QuizDisplayer._({Key? key}) : super(key: key);
 
   static provider(List<Question> questions) {
-    return BlocProvider(
-      create: (context) => QuizDisplayerCubit(questions: questions),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => QuizDisplayerCubit(questions: questions),
+        ),
+        BlocProvider(
+          create: (context) => QuizAnswerRecordCubit(),
+        )
+      ],
       child: QuizDisplayer._(),
     );
   }
