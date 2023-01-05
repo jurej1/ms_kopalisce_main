@@ -16,6 +16,7 @@ class QuizDisplayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
+
     return BlocBuilder<QuizDisplayerCubit, QuizDisplayerState>(
       builder: (context, state) {
         return SizedBox(
@@ -24,9 +25,24 @@ class QuizDisplayer extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 20,
+                margin: const EdgeInsets.all(10),
+                height: 10,
                 width: size.width,
-                color: Colors.blue,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade300,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10),
+                  child: FractionallySizedBox(
+                    alignment: Alignment.centerLeft,
+                    heightFactor: 1,
+                    widthFactor: state.activeQuestionIndex / state.question.length,
+                    child: Container(
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
               ),
               Expanded(
                 child: state.status.isPlaying
