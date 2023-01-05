@@ -39,7 +39,7 @@ class QuestionDisplayer extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
             isDismissible: false,
             margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
-            duration: const Duration(seconds: 2),
+            duration: const Duration(milliseconds: 1500),
             animationDuration: const Duration(milliseconds: 300),
           ).show(context).then((value) {
             BlocProvider.of<QuizDisplayerCubit>(context).activeQuestionForward();

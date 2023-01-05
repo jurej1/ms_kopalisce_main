@@ -4,15 +4,16 @@ import 'package:ms_kopalisce_main/quiz/quiz.dart';
 import 'package:quiz_repository/quiz_repository.dart';
 
 class QuizDisplayer extends StatelessWidget {
-  const QuizDisplayer._({Key? key}) : super(key: key);
+  QuizDisplayer._({Key? key}) : super(key: key);
 
   static provider(List<Question> questions) {
     return BlocProvider(
       create: (context) => QuizDisplayerCubit(questions: questions),
-      child: const QuizDisplayer._(),
+      child: QuizDisplayer._(),
     );
   }
 
+  final _borderRadius = BorderRadius.circular(15);
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -30,10 +31,10 @@ class QuizDisplayer extends StatelessWidget {
                 width: size.width,
                 decoration: BoxDecoration(
                   color: Colors.grey.shade300,
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: _borderRadius,
                 ),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: _borderRadius,
                   child: FractionallySizedBox(
                     alignment: Alignment.centerLeft,
                     heightFactor: 1,
