@@ -49,6 +49,8 @@ class AnswerCard extends StatelessWidget {
 
     bool isThisSelectedAnwser = answer.id == state.selectedAnwserIndex;
 
-    return isAnwserSelectedStatus ? (state.isSelectedAnwserCorrect && isThisSelectedAnwser ? Colors.green : Colors.red) : Colors.blue;
+    return isAnwserSelectedStatus
+        ? (state.isSelectedAnwserCorrect && isThisSelectedAnwser ? Colors.green.withOpacity(0.5) : Colors.red.withOpacity(0.5))
+        : Colors.blue;
   }
 }
