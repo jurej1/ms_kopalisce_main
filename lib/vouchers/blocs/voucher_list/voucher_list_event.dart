@@ -10,3 +10,11 @@ abstract class VoucherListEvent extends Equatable {
 class VoucherListLoadRequested extends VoucherListEvent {}
 
 class VoucherListLoadMoreRequested extends VoucherListEvent {}
+
+class VouchersListItemAddedToList extends VoucherListEvent {
+  final VoucherUser voucher;
+
+  const VouchersListItemAddedToList(this.voucher);
+  @override
+  List<Object> get props => [voucher];
+}

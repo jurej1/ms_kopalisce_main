@@ -6,6 +6,7 @@ import 'package:coupon_repository/coupon_repository.dart';
 import 'package:equatable/equatable.dart';
 import 'package:ms_kopalisce_main/authentication/authentication.dart';
 import 'package:authentication_repository/authentication_repository.dart';
+import 'package:ms_kopalisce_main/vouchers/blocs/blocs.dart';
 
 part 'voucher_list_event.dart';
 part 'voucher_list_state.dart';
@@ -31,6 +32,8 @@ abstract class VoucherListBloc extends Bloc<VoucherListEvent, VoucherListState> 
       yield* _mapLoadRequestedToState();
     } else if (event is VoucherListLoadMoreRequested) {
       yield* _mapLoadMoreRequestedToState();
+    } else if (event is VouchersListItemAddedToList) {
+      yield* _mapItemAddedToState(event);
     }
   }
 
@@ -53,7 +56,11 @@ abstract class VoucherListBloc extends Bloc<VoucherListEvent, VoucherListState> 
         if (listData.isEmpty) {
           yield VoucherListEmpty();
         } else {
-          yield VoucherListSucess(vouchers: listData, lastDocument: querySnapshot.docs.last);
+          yield VoucherListSucess(
+            vouchers: listData,
+            lastDocument: querySnapshot.docs.last,
+            hasReachedMax: listData.length < _limit,
+          );
         }
       } catch (e) {
         yield VoucherListFail();
@@ -64,9 +71,9 @@ abstract class VoucherListBloc extends Bloc<VoucherListEvent, VoucherListState> 
   }
 
   Stream<VoucherListState> _mapLoadMoreRequestedToState() async* {
-    if (state is VoucherListSucess) {
+    if (state is VoucherListSucess && !(state as VoucherListSucess).hasReachedMax) {
       final currentState = (state as VoucherListSucess);
-      List<VoucherUser> vouchers = currentState.vouchers as List<VoucherUser>;
+      List<VoucherUser> vouchers = currentState.vouchers;
 
       try {
         QuerySnapshot querySnapshot = await _couponRepository.loadUserVouchersByStatus(
@@ -86,10 +93,24 @@ abstract class VoucherListBloc extends Bloc<VoucherListEvent, VoucherListState> 
         yield VoucherListSucess(
           vouchers: vouchers,
           lastDocument: querySnapshot.docs.last,
+          hasReachedMax: querySnapshot.docs.length < _limit,
         );
       } catch (e) {
         yield VoucherListFail();
       }
+    }
+  }
+
+  Stream<VoucherListState> _mapItemAddedToState(VouchersListItemAddedToList event) async* {
+    if (state is VoucherListSucess) {
+      final currentState = state as VoucherListSucess;
+      final data = List<VoucherUser>.from(currentState.vouchers)..add(event.voucher);
+
+      yield VoucherListSucess(
+        vouchers: data,
+        hasReachedMax: currentState.hasReachedMax,
+        lastDocument: currentState.lastDocument,
+      );
     }
   }
 }

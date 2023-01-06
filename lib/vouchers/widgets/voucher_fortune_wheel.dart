@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:html';
 import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,6 +24,9 @@ class VoucherFortuneWheel extends StatefulWidget {
             vouchers: vouchers,
           ),
         ),
+        BlocProvider(
+          create: (context) => BlocProvider.of<VoucherValidListBloc>(context),
+        )
       ],
       child: const VoucherFortuneWheel._(),
     );
@@ -41,15 +45,13 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
     super.initState();
     controller = StreamController<int>.broadcast();
 
-    Future.delayed(const Duration(seconds: 3)).then((value) {
-      controller.add(
-        BlocProvider.of<FortuneWheelCubit>(context).state.roll(),
-      );
-    });
-
     streamSubscription = controller.stream.listen((index) {
       BlocProvider.of<FortuneWheelCubit>(context).selectedIndexUpdated(index);
     });
+  }
+
+  void _spinTheWheel() {
+    controller.add(BlocProvider.of<FortuneWheelCubit>(context).state.roll());
   }
 
   @override
@@ -61,10 +63,11 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return BlocListener<FortuneWheelWinnerPickerBloc, FortuneWheelWinnerPickerState>(
       listener: (context, state) {
         if (state is FortuneWheelWinnerPickerLoadSuccess) {
-          //TODO add the item to the list of all vouchers
+          BlocProvider.of<VoucherValidListBloc>(context).add(VouchersListItemAddedToList(state.item));
 
           Navigator.of(context).push(VoucherQrCodeView.route(context, state.item)).then(
             (value) {
@@ -73,48 +76,62 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
           );
         }
       },
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(20),
-          child: BlocConsumer<FortuneWheelCubit, FortuneWheelState>(
-            listener: (context, state) {
-              if (state.status == FortuneWheelStatus.done) {
-                BlocProvider.of<FortuneWheelWinnerPickerBloc>(context).add(FortuneWheelWinnerPicked(state.selectedIndex));
-              }
-            },
-            builder: (context, state) {
-              return FortuneWheel(
-                selected: controller.stream,
-                animateFirst: false,
-                onAnimationStart: () {
-                  BlocProvider.of<FortuneWheelCubit>(context).animationStarted();
-                },
-                onAnimationEnd: () {
-                  BlocProvider.of<FortuneWheelCubit>(context).animationCompleted();
-                },
-                physics: CircularPanPhysics(
-                  duration: const Duration(seconds: 1),
-                  curve: Curves.decelerate,
-                ),
-                indicators: const <FortuneIndicator>[
-                  FortuneIndicator(
-                    alignment: Alignment.topCenter,
-                    child: TriangleIndicator(
-                      color: Colors.orange,
+      child: BlocConsumer<FortuneWheelCubit, FortuneWheelState>(
+        listener: (context, state) {
+          if (state.status == FortuneWheelStatus.done) {
+            BlocProvider.of<FortuneWheelWinnerPickerBloc>(context).add(FortuneWheelWinnerPicked(state.selectedIndex));
+          }
+        },
+        builder: (context, state) {
+          return SizedBox(
+            height: size.height,
+            width: size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SizedBox(
+                  height: size.width * 0.8,
+                  width: size.width * 0.8,
+                  child: FortuneWheel(
+                    selected: controller.stream,
+                    animateFirst: false,
+                    onAnimationStart: () {
+                      BlocProvider.of<FortuneWheelCubit>(context).animationStarted();
+                    },
+                    onAnimationEnd: () {
+                      BlocProvider.of<FortuneWheelCubit>(context).animationCompleted();
+                    },
+                    physics: CircularPanPhysics(
+                      duration: const Duration(seconds: 1),
+                      curve: Curves.decelerate,
                     ),
-                  ),
-                ],
-                items: state.items
-                    .map(
-                      (e) => FortuneItem(
-                        child: Text(e.name),
+                    indicators: const <FortuneIndicator>[
+                      FortuneIndicator(
+                        alignment: Alignment.topCenter,
+                        child: TriangleIndicator(
+                          color: Colors.orange,
+                        ),
                       ),
-                    )
-                    .toList(),
-              );
-            },
-          ),
-        ),
+                    ],
+                    items: state.items
+                        .map(
+                          (e) => FortuneItem(
+                            child: Text(e.name),
+                          ),
+                        )
+                        .toList(),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: _spinTheWheel,
+                  child: const Text('Spin'),
+                ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
