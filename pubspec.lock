@@ -412,7 +412,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "28c8c980e98ce6df1fba7de39e1db2e0563154fc"
+      resolved-ref: b59818b0005ce52ff251a97857a51c20207c213e
       url: "https://github.com/jurej1/weather_repository.git"
     source: git
     version: "0.0.0"

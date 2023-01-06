@@ -97,24 +97,30 @@ class _WeatherConditionDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Image(
-          image: AssetImage(
-            weatherLocation.iconPath,
-            package: 'weather_repository',
+    return SizedBox(
+      height: 64,
+      child: Row(
+        children: [
+          Image(
+            image: AssetImage(
+              weatherLocation.iconPath,
+              package: 'weather_repository',
+            ),
+            errorBuilder: (context, _, __) {
+              return Container();
+            },
           ),
-        ),
-        const SizedBox(width: 10),
-        Text(
-          weatherLocation.conditionText,
-          style: const TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            letterSpacing: 0.5,
+          const SizedBox(width: 10),
+          Text(
+            weatherLocation.conditionText,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              letterSpacing: 0.5,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
