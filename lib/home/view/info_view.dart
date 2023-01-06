@@ -9,7 +9,7 @@ class InfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: true,
+      // extendBody: true,
       appBar: AppBar(
         actions: [
           ElevatedButton(
