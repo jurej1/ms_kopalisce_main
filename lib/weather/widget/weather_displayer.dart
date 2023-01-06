@@ -14,9 +14,17 @@ class WeatherDisplayer extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.all(30),
-      color: Colors.green,
       width: size.width,
       height: size.height,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage(
+            weatherLocation.imagePath,
+            package: 'weather_repository',
+          ),
+        ),
+        // color: Colors.green,
+      ),
       child: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 50 + 30),
         child: Column(
@@ -49,36 +57,9 @@ class WeatherDisplayer extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            Row(
-              children: [
-                Image(
-                  image: AssetImage(
-                    weatherLocation.iconPath,
-                    package: 'weather_repository',
-                  ),
-                ),
-                const SizedBox(width: 10),
-                Text(
-                  weatherLocation.conditionText,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    letterSpacing: 0.5,
-                  ),
-                ),
-              ],
-            ),
+            _WeatherConditionDisplayer(weatherLocation: weatherLocation),
             const SizedBox(height: 10),
-            Container(
-              height: 1,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(10),
-                ),
-              ),
-            ),
+            const _Separator(),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -98,6 +79,58 @@ class WeatherDisplayer extends StatelessWidget {
               ],
             )
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _WeatherConditionDisplayer extends StatelessWidget {
+  const _WeatherConditionDisplayer({
+    Key? key,
+    required this.weatherLocation,
+  }) : super(key: key);
+
+  final WeatherLocation weatherLocation;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Image(
+          image: AssetImage(
+            weatherLocation.iconPath,
+            package: 'weather_repository',
+          ),
+        ),
+        const SizedBox(width: 10),
+        Text(
+          weatherLocation.conditionText,
+          style: const TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+            letterSpacing: 0.5,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _Separator extends StatelessWidget {
+  const _Separator({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 1,
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
         ),
       ),
     );

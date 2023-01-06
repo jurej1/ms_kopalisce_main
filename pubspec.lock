@@ -123,7 +123,7 @@ packages:
       name: firebase_auth
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.2.4"
+    version: "4.2.5"
   firebase_auth_platform_interface:
     dependency: transitive
     description:
@@ -412,7 +412,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: b1e6110368f1eefb6a7c67d1224f5688e1121e73
+      resolved-ref: "28c8c980e98ce6df1fba7de39e1db2e0563154fc"
       url: "https://github.com/jurej1/weather_repository.git"
     source: git
     version: "0.0.0"
