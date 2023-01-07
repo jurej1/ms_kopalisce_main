@@ -19,12 +19,13 @@ class WeatherDisplayer extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.black,
         image: DecorationImage(
-            fit: BoxFit.fill,
-            image: AssetImage(
-              weatherLocation.imagePath,
-              package: 'weather_repository',
-            ),
-            opacity: 0.7),
+          fit: BoxFit.fill,
+          image: AssetImage(
+            weatherLocation.imagePath,
+            package: 'weather_repository',
+          ),
+          opacity: 0.7,
+        ),
       ),
       child: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 50 + 30),
@@ -59,9 +60,9 @@ class WeatherDisplayer extends StatelessWidget {
               ),
             ),
             _WeatherConditionDisplayer(weatherLocation: weatherLocation),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
             const _Separator(),
-            const SizedBox(height: 20),
+            const SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
