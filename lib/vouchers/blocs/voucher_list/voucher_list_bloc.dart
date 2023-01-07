@@ -1,12 +1,11 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:coupon_repository/coupon_repository.dart';
-import 'package:equatable/equatable.dart';
 import 'package:ms_kopalisce_main/authentication/authentication.dart';
 import 'package:authentication_repository/authentication_repository.dart';
-import 'package:ms_kopalisce_main/vouchers/blocs/blocs.dart';
 
 part 'voucher_list_event.dart';
 part 'voucher_list_state.dart';

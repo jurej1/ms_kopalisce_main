@@ -24,7 +24,7 @@ class VoucherFortuneWheel extends StatefulWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => BlocProvider.of<VoucherValidListBloc>(context),
+          create: (_) => BlocProvider.of<VoucherValidListBloc>(context),
         )
       ],
       child: const VoucherFortuneWheel._(),

@@ -1,10 +1,7 @@
 part of 'voucher_list_bloc.dart';
 
-abstract class VoucherListState extends Equatable {
+abstract class VoucherListState {
   const VoucherListState();
-
-  @override
-  List<Object> get props => [];
 }
 
 class VoucherListLoading extends VoucherListState {}
