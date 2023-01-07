@@ -20,31 +20,13 @@ class RudyMneuView extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
           children: [
             _FoodItemTicker(item: RudyRepository.friskoDomaceItem),
-            Transform.scale(
-              scale: 0.95,
-              child: Image.asset(
-                RudyRepository.friskoDomace,
-                package: 'price_repository',
-              ),
-            ),
+            _ImageDisplayer(path: RudyRepository.friskoDomace),
             const _LineSeparator(),
             _FoodItemTicker(item: RudyRepository.rudijevaBombetkaItem),
-            Transform.scale(
-              scale: 0.95,
-              child: Image.asset(
-                RudyRepository.rudijevaBombetka,
-                package: 'price_repository',
-              ),
-            ),
+            _ImageDisplayer(path: RudyRepository.rudijevaBombetka),
             const _LineSeparator(),
             const _OtherSelection(),
-            Transform.scale(
-              scale: 0.95,
-              child: Image.asset(
-                RudyRepository.ostalaPonudba,
-                package: 'price_repository',
-              ),
-            ),
+            _ImageDisplayer(path: RudyRepository.ostalaPonudba),
             const _LineSeparator(),
             const _OtherPricesMenu(),
           ],
@@ -143,6 +125,13 @@ class _OtherPricesMenu extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            tapTargetSize: MaterialTapTargetSize.padded,
+            padding: const EdgeInsets.symmetric(
+              vertical: 5,
+              horizontal: 15,
+            ),
+          ),
           onPressed: () {
             Navigator.of(context).push(BathroomServicesView.route(context));
           },
@@ -150,12 +139,37 @@ class _OtherPricesMenu extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            tapTargetSize: MaterialTapTargetSize.padded,
+            padding: const EdgeInsets.symmetric(
+              vertical: 5,
+              horizontal: 15,
+            ),
+          ),
           onPressed: () {
             Navigator.of(context).push(FoodPricesView.route(context));
           },
           child: const Text('Cenik Hrane\n in pijace'),
         ),
       ],
+    );
+  }
+}
+
+class _ImageDisplayer extends StatelessWidget {
+  const _ImageDisplayer({
+    Key? key,
+    required this.path,
+  }) : super(key: key);
+
+  final String path;
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset(
+      path,
+      package: 'price_repository',
+      scale: 0.95,
     );
   }
 }
