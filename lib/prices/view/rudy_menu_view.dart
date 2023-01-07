@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:price_repository/price_repository.dart';
 
 import '../../home/home.dart';
+import 'view.dart';
 
 class RudyMneuView extends StatelessWidget {
   const RudyMneuView({Key? key}) : super(key: key);
@@ -46,6 +46,7 @@ class RudyMneuView extends StatelessWidget {
               ),
             ),
             const _LineSeparator(),
+            const _OtherPricesMenu(),
           ],
         ),
       ),
@@ -128,6 +129,32 @@ class _OtherSelection extends StatelessWidget {
         const SizedBox(height: 5),
         Text(item.description ?? ''),
         const SizedBox(height: 10),
+      ],
+    );
+  }
+}
+
+class _OtherPricesMenu extends StatelessWidget {
+  const _OtherPricesMenu({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(BathroomServicesView.route(context));
+          },
+          child: const Text('Cenik Kart'),
+        ),
+        const SizedBox(height: 20),
+        ElevatedButton(
+          onPressed: () {
+            Navigator.of(context).push(FoodPricesView.route(context));
+          },
+          child: const Text('Cenik Hrane\n in pijace'),
+        ),
       ],
     );
   }
