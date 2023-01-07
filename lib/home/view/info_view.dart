@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ms_kopalisce_main/authentication/blocs/authentication/authentication_bloc.dart';
 import 'package:ms_kopalisce_main/home/home.dart';
+
+import '../../authentication/authentication.dart';
 
 class InfoView extends StatelessWidget {
   const InfoView({Key? key}) : super(key: key);
@@ -9,17 +10,16 @@ class InfoView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // extendBody: true,
-      appBar: AppBar(
-        actions: [
-          ElevatedButton(
-            onPressed: () {
-              BlocProvider.of<AuthenticationBloc>(context).add(AuthenticationLogoutRequested());
-            },
-            child: const Text('LogOut'),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   actions: [
+      //     ElevatedButton(
+      //       onPressed: () {
+      //         BlocProvider.of<AuthenticationBloc>(context).add(AuthenticationLogoutRequested());
+      //       },
+      //       child: const Text('LogOut'),
+      //     ),
+      //   ],
+      // ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(10),
         child: Column(
