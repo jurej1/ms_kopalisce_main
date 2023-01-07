@@ -1,10 +1,7 @@
 part of 'voucher_list_bloc.dart';
 
-abstract class VoucherListEvent extends Equatable {
+abstract class VoucherListEvent {
   const VoucherListEvent();
-
-  @override
-  List<Object> get props => [];
 }
 
 class VoucherListLoadRequested extends VoucherListEvent {}
@@ -15,6 +12,4 @@ class VouchersListItemAddedToList extends VoucherListEvent {
   final VoucherUser voucher;
 
   const VouchersListItemAddedToList(this.voucher);
-  @override
-  List<Object> get props => [voucher];
 }
