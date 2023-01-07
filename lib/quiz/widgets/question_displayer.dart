@@ -49,42 +49,52 @@ class QuestionDisplayer extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return ListView(
-          shrinkWrap: true,
-          children: [
-            Container(
-              height: size.height * 0.3,
-              width: size.width,
-              alignment: Alignment.center,
-              color: Colors.grey.withOpacity(0.1),
-              child: Text(
-                maxLines: 6,
-                state.question.questionText,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  overflow: TextOverflow.clip,
+        return ScrollConfiguration(
+          behavior: QuizScrollBehaviour(),
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              Container(
+                height: size.height * 0.3,
+                width: size.width,
+                alignment: Alignment.center,
+                color: Colors.grey.withOpacity(0.1),
+                child: Text(
+                  maxLines: 6,
+                  state.question.questionText,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    overflow: TextOverflow.clip,
+                  ),
                 ),
               ),
-            ),
-            GridView.builder(
-              padding: const EdgeInsets.all(10),
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
-                mainAxisExtent: size.height * 0.2,
-              ),
-              itemCount: state.question.anwsers.length,
-              itemBuilder: (context, index) {
-                final item = state.question.anwsers[index];
-                return AnswerCard(answer: item);
-              },
-            )
-          ],
+              GridView.builder(
+                padding: const EdgeInsets.all(10),
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  mainAxisExtent: size.height * 0.2,
+                ),
+                itemCount: state.question.anwsers.length,
+                itemBuilder: (context, index) {
+                  final item = state.question.anwsers[index];
+                  return AnswerCard(answer: item);
+                },
+              )
+            ],
+          ),
         );
       },
     );
+  }
+}
+
+class QuizScrollBehaviour extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
   }
 }
