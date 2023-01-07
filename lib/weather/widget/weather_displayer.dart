@@ -17,13 +17,15 @@ class WeatherDisplayer extends StatelessWidget {
       width: size.width,
       height: size.height,
       decoration: BoxDecoration(
-          color: Colors.white,
-          image: DecorationImage(
-            image: AssetImage(weatherLocation.imagePath, package: 'weather_repository'),
-          )
-
-          // color: Colors.green,
-          ),
+        color: Colors.black,
+        image: DecorationImage(
+            fit: BoxFit.fill,
+            image: AssetImage(
+              weatherLocation.imagePath,
+              package: 'weather_repository',
+            ),
+            opacity: 0.7),
+      ),
       child: SingleChildScrollView(
         padding: const EdgeInsets.only(top: 50 + 30),
         child: Column(
