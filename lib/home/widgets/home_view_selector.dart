@@ -11,25 +11,6 @@ class HomeViewSelector extends StatelessWidget implements PreferredSizeWidget {
     final Size size = MediaQuery.of(context).size;
     return BlocBuilder<HomeViewSelectorCubit, HomeViewSelectorState>(
       builder: (context, state) {
-        // return BottomNavigationBar(
-        //   currentIndex: HomeViewSelectorState.values.indexOf(state),
-        //   showSelectedLabels: false,
-        //   showUnselectedLabels: false,
-        //   selectedItemColor: Colors.blue,
-        //   unselectedItemColor: Colors.grey,
-        //   items: HomeViewSelectorState.values
-        //       .map(
-        //         (e) => BottomNavigationBarItem(
-        //           icon: Icon(e.mapStateToIcon()),
-        //           label: '',
-        //         ),
-        //       )
-        //       .toList(),
-        //   onTap: (index) {
-        //     BlocProvider.of<HomeViewSelectorCubit>(context).valuUpdatedIndex(index);
-        //   },
-        // );
-
         return ConstrainedBox(
           constraints: BoxConstraints(
             maxHeight: kBottomNavigationBarHeight,

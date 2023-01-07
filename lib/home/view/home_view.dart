@@ -35,7 +35,9 @@ class HomeView extends StatelessWidget {
         } else if (state.isCoupons) {
           return VoucherViewList.providers();
         } else if (state.isPrices) {
-          return const PricesView();
+          // return const PricesView();
+
+          return RudyMneuView();
         } else if (state.isQuiz) {
           return const QuizHomeView();
         }
