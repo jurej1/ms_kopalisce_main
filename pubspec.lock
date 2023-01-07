@@ -335,7 +335,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "04d82898e2479a22e0a7fab855bf132aac8ff45a"
+      resolved-ref: b17bdf6bd8223d111be6f3fb9d990b2a55197a6c
       url: "https://github.com/jurej1/quiz_repository.git"
     source: git
     version: "0.0.0"
