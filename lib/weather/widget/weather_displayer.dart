@@ -24,7 +24,7 @@ class WeatherDisplayer extends StatelessWidget {
             weatherLocation.imagePath,
             package: 'weather_repository',
           ),
-          opacity: 0.7,
+          opacity: 0.6,
         ),
       ),
       child: SingleChildScrollView(

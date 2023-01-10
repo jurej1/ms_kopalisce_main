@@ -57,14 +57,20 @@ class _LoginViewState extends State<LoginView> {
         }
       },
       child: Scaffold(
-        body: Container(
+        body: SizedBox(
           height: size.height,
           width: size.width,
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(20),
             child: Column(
               children: [
-                SizedBox(height: size.height * 0.3),
+                SizedBox(
+                  height: size.height * 0.1,
+                ),
+                Image.asset(
+                  'assets/sobota_svica.png',
+                  height: size.height * 0.3,
+                ),
                 _EmailInputField(focusNode: emailFocusNode),
                 const SizedBox(height: 25),
                 _PasswordInputField(focusNode: passwordFocusNode),
@@ -72,7 +78,7 @@ class _LoginViewState extends State<LoginView> {
                 _SubmitButton(),
                 const SizedBox(height: 25),
                 SwitchViewButton(
-                  title: 'Do not have an account? Register',
+                  title: 'Nimate še računa? Registracija',
                   onPressed: () {
                     if (FocusScope.of(context).hasFocus) FocusScope.of(context).unfocus();
                     Navigator.of(context).pushReplacement(RegisterView.route(context));
@@ -102,7 +108,7 @@ class _EmailInputField extends StatelessWidget {
             color: Theme.of(context).primaryColor,
           ),
           suffixIcon: state.email.error == null
-              ? Icon(
+              ? const Icon(
                   Icons.check_rounded,
                   color: Colors.green,
                 )
@@ -136,7 +142,7 @@ class _PasswordInputField extends StatelessWidget {
           keyboardType: TextInputType.visiblePassword,
           focusNode: focusNode,
           action: TextInputAction.done,
-          hintText: 'Password',
+          hintText: 'Geslo',
           obscure: true,
           errorText: state.password.invalid ? 'Please enter a valid password' : null,
           onChanged: (val) => BlocProvider.of<LoginFormBloc>(context).add(LoginPasswordChanged(val)),
@@ -153,7 +159,7 @@ class _SubmitButton extends StatelessWidget {
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return SubmitButton(
-          title: 'Log In',
+          title: 'Vpiši se',
           isLoading: state.status.isSubmissionInProgress,
           onPressed: () {
             if (FocusScope.of(context).hasFocus) FocusScope.of(context).unfocus();
