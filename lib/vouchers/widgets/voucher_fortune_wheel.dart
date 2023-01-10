@@ -90,8 +90,8 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 SizedBox(
-                  height: size.width * 0.8,
-                  width: size.width * 0.8,
+                  height: size.width * 0.9,
+                  width: size.width * 0.9,
                   child: FortuneWheel(
                     selected: controller.stream,
                     animateFirst: false,
@@ -116,7 +116,10 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
                     items: state.items
                         .map(
                           (e) => FortuneItem(
-                            child: Text(e.name),
+                            child: Text(
+                              e.name,
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                         )
                         .toList(),
@@ -125,7 +128,7 @@ class _VoucherFortuneWheelState extends State<VoucherFortuneWheel> {
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _spinTheWheel,
-                  child: const Text('Spin'),
+                  child: const Text('Zavrti Kolo Sreče'),
                 ),
               ],
             ),

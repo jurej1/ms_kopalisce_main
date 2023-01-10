@@ -149,7 +149,7 @@ class _OtherPricesMenu extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).push(FoodPricesView.route(context));
           },
-          child: const Text('Cenik Hrane\n in pijace'),
+          child: const Text('Cenik ostale Hrane\n in pijace'),
         ),
       ],
     );

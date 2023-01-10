@@ -54,7 +54,7 @@ class VoucherViewList extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).push(VoucherWheelView.route(context));
         },
-        child: const Icon(Icons.circle),
+        child: const Icon(Icons.add_circle),
       ),
     );
   }

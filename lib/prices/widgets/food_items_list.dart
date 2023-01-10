@@ -31,7 +31,7 @@ class FoodItemsList extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(item.title),
-            Text('\$${item.price}'),
+            Text('€${item.price}'),
           ],
         );
       },

@@ -24,7 +24,15 @@ class VoucherWheelView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('VoucherWheelView'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.black,
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
       body: BlocBuilder<VouchersWheelListBloc, VouchersWheelListState>(
         builder: (context, state) {
