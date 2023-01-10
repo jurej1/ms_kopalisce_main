@@ -39,7 +39,7 @@ class QuizHomeView extends StatelessWidget {
                   //Start the Quiz
                   Navigator.of(context).push(QuizView.route(context));
                 },
-                child: const Text('Start Quiz'),
+                child: const Text('Začni z Kvizem'),
               ),
             ),
           ],
