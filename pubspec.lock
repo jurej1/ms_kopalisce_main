@@ -20,7 +20,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "77c3dc5f6f6fc6f52c812fe3e912a0268788caab"
+      resolved-ref: d7ccadae85b1d99dec66a7991fe5fc1a1a64f260
       url: "https://github.com/jurej1/authentication_repository.git"
     source: git
     version: "0.0.0"
@@ -298,7 +298,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: e34d0c93af5d02750543b8aeda180d0948f997fb
+      resolved-ref: "6492f4a2413a370337ec977f59d0af61eb699489"
       url: "https://github.com/jurej1/price_repository.git"
     source: git
     version: "0.0.0"
