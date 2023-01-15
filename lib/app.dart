@@ -53,6 +53,7 @@ class _AppState extends State<App> {
         RepositoryProvider.value(value: widget._couponRepository),
         RepositoryProvider.value(value: widget._priceRepository),
         RepositoryProvider.value(value: widget._quizRepository),
+        RepositoryProvider.value(value: widget._infoRepository),
       ],
       child: MultiBlocProvider(
         providers: [
