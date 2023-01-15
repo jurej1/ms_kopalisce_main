@@ -28,7 +28,7 @@ class QuizHomeView extends StatelessWidget {
             Image.asset(
               fit: BoxFit.fill,
               height: size.height * 0.4,
-              QuizImages.sobotaSvica,
+              QuizImages.mascot,
               package: 'quiz_repository',
             ),
             const SizedBox(height: 20),
