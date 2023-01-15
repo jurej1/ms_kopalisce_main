@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:info_repository/info_repository.dart';
 
+import 'package:intl/intl.dart';
+
 import 'package:ms_kopalisce_main/home/blocs/blocs.dart';
 
 class OpenTimeDisplayer extends StatelessWidget {
@@ -71,6 +73,8 @@ class _OpenDayDisplayer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final openDateTime = DateTime(0, 0, 0, val!.opens!.hour, val!.opens!.minute);
+    final closeDateTime = DateTime(0, 0, 0, val!.closes!.hour, val!.closes!.minute);
     return Padding(
       padding: const EdgeInsets.only(bottom: 5),
       child: Row(
@@ -78,9 +82,9 @@ class _OpenDayDisplayer extends StatelessWidget {
         children: [
           Text(dayOfWeek.toStringReadable()),
           const Spacer(),
-          if (val?.opens != null) Text('${val!.opens!.hour}:${val!.opens!.minute}'),
+          if (val?.opens != null) Text(DateFormat('HH:mm').format(openDateTime)),
           if (val != null) const Text(' - '),
-          if (val?.closes != null) Text('${val!.closes!.hour}:${val!.closes!.minute}'),
+          if (val?.closes != null) Text(DateFormat('HH:mm').format(closeDateTime)),
         ],
       ),
     );
