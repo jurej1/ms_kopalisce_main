@@ -7,13 +7,6 @@ import 'package:ms_kopalisce_main/home/blocs/blocs.dart';
 class OpenTimeDisplayer extends StatelessWidget {
   const OpenTimeDisplayer({Key? key}) : super(key: key);
 
-  static providers() {
-    return BlocProvider(
-      create: (context) => OpenTimeBloc(RepositoryProvider.of<InfoRepository>(context))..add(OpenTimeLoadRequested()),
-      child: const OpenTimeDisplayer(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OpenTimeBloc, OpenTimeState>(

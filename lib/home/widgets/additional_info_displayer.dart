@@ -7,13 +7,6 @@ import '../home.dart';
 class AdditionalInfoDisplayer extends StatelessWidget {
   const AdditionalInfoDisplayer({Key? key}) : super(key: key);
 
-  static Widget providers() {
-    return BlocProvider(
-      create: (context) => AdditionalInfoBloc(RepositoryProvider.of<InfoRepository>(context))..add(AdditionalInfoLoadRequested()),
-      child: const AdditionalInfoDisplayer(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AdditionalInfoBloc, AdditionalInfoState>(

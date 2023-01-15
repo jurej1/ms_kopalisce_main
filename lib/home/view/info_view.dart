@@ -26,9 +26,9 @@ class InfoView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const SizedBox(height: 40),
-            OpenTimeDisplayer.providers(),
+            const OpenTimeDisplayer(),
             const SizedBox(height: 30),
-            AdditionalInfoDisplayer.providers(),
+            const AdditionalInfoDisplayer(),
           ],
         ),
       ),

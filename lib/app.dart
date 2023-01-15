@@ -102,7 +102,19 @@ class _AppState extends State<App> {
                 context,
               ),
             )..add(const LoadWeatherDataRequested()),
-          )
+          ),
+
+          //Info
+          BlocProvider(
+            create: (context) => OpenTimeBloc(
+              RepositoryProvider.of<InfoRepository>(context),
+            )..add(OpenTimeLoadRequested()),
+          ),
+          BlocProvider(
+            create: (context) => AdditionalInfoBloc(
+              RepositoryProvider.of<InfoRepository>(context),
+            )..add(AdditionalInfoLoadRequested()),
+          ),
         ],
         child: MaterialApp(
           navigatorKey: _navigatorState,
