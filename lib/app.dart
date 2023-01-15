@@ -107,18 +107,16 @@ class _AppState extends State<App> {
             primarySwatch: Colors.blue,
           ),
           builder: (context, child) {
-            // return BlocListener<AuthenticationBloc, AuthenticationState>(
-            //   listener: ((context, state) {
-            //     if (state.status == AuthenticationStatus.unauthenticated) {
-            //       _navigatorState.currentState!.pushReplacement(LoginView.route(context));
-            //     } else if (state.status == AuthenticationStatus.authenticated) {
-            //       _navigatorState.currentState!.pushReplacement(HomeView.route(context));
-            //     }
-            //   }),
-            //   child: child!,
-            // );
-
-            return child!;
+            return BlocListener<AuthenticationBloc, AuthenticationState>(
+              listener: ((context, state) {
+                if (state.status == AuthenticationStatus.unauthenticated) {
+                  _navigatorState.currentState!.pushReplacement(LoginView.route(context));
+                } else if (state.status == AuthenticationStatus.authenticated) {
+                  _navigatorState.currentState!.pushReplacement(HomeView.route(context));
+                }
+              }),
+              child: child!,
+            );
           },
           home: _SplashScreen(),
         ),
