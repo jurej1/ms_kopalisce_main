@@ -27,8 +27,8 @@ class InfoView extends StatelessWidget {
           children: [
             const SizedBox(height: 40),
             OpenTimeDisplayer.providers(),
-            const SizedBox(height: 10),
-            const AdditionalInfo(),
+            const SizedBox(height: 30),
+            AdditionalInfoDisplayer.providers(),
           ],
         ),
       ),
