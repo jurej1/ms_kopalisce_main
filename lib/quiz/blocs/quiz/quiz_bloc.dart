@@ -27,9 +27,11 @@ class QuizBloc extends Bloc<QuizEvent, QuizState> {
     yield QuizLoading();
 
     try {
-      QuerySnapshot snapshot = await _quizRepository.loadQuestion();
+      QuerySnapshot snapshot = await _quizRepository.loadAllQuestions();
 
-      List<Question> questions = snapshot.docs.map((e) => Question.fromDocumentSnapshot(e)).toList();
+      List<Question> questions = snapshot.docs.map((e) => Question.fromDocumentSnapshot(e)).toList()
+        ..shuffle()
+        ..take(4);
 
       log('questions length: ${questions.length}');
 
