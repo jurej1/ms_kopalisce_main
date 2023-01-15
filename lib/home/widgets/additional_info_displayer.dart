@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AdditionalInfo extends StatelessWidget {
-  const AdditionalInfo({Key? key}) : super(key: key);
+class AdditionalInfoDisplayer extends StatelessWidget {
+  const AdditionalInfoDisplayer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
