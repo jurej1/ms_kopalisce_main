@@ -118,7 +118,7 @@ class _AppState extends State<App> {
               child: child!,
             );
           },
-          home: LoadingView(),
+          home: const SplashScreen(),
         ),
       ),
     );
