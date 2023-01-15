@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:coupon_repository/coupon_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:info_repository/info_repository.dart';
 import 'package:ms_kopalisce_main/app.dart';
 import 'package:ms_kopalisce_main/utilities/sobota_svica_bloc_observer.dart';
 import 'package:price_repository/price_repository.dart';
@@ -21,6 +22,7 @@ Future<void> main() async {
       couponRepository: CouponRepository(),
       priceRepository: PriceRepository(),
       quizRepository: QuizRepository(),
+      infoRepository: InfoRepository(),
     ),
   );
 }

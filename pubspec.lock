@@ -230,6 +230,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.2"
+  info_repository:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: master
+      resolved-ref: "34965cd3934271fda271f52224da88b3d49a885d"
+      url: "https://github.com/jurej1/info_repository.git"
+    source: git
+    version: "0.0.0"
   intl:
     dependency: transitive
     description:

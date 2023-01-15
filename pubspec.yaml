@@ -18,6 +18,11 @@ dependencies:
     git:
       url: https://github.com/jurej1/coupon_repository.git
       ref: master
+  info_repository:
+    git:
+      url: https://github.com/jurej1/info_repository.git
+      ref: master
+
   cupertino_icons: ^1.0.2
   equatable: ^2.0.5
   firebase_auth: ^4.2.4

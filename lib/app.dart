@@ -2,7 +2,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:ms_kopalisce_main/prices/blocs/bathroom_services/bathroom_services_bloc.dart';
+import 'package:info_repository/info_repository.dart';
 import 'package:ms_kopalisce_main/prices/blocs/blocs.dart';
 import 'package:price_repository/price_repository.dart';
 import 'package:quiz_repository/quiz_repository.dart';
@@ -21,11 +21,13 @@ class App extends StatefulWidget {
     required CouponRepository couponRepository,
     required PriceRepository priceRepository,
     required QuizRepository quizRepository,
+    required InfoRepository infoRepository,
   })  : _authenticationRepository = authenticationRepository,
         _weatherRepository = weatherRepository,
         _couponRepository = couponRepository,
         _priceRepository = priceRepository,
         _quizRepository = quizRepository,
+        _infoRepository = infoRepository,
         super(key: key);
 
   final AuthenticationRepository _authenticationRepository;
@@ -33,6 +35,7 @@ class App extends StatefulWidget {
   final CouponRepository _couponRepository;
   final PriceRepository _priceRepository;
   final QuizRepository _quizRepository;
+  final InfoRepository _infoRepository;
 
   @override
   State<App> createState() => _AppState();
