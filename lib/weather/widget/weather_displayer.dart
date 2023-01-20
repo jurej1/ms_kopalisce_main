@@ -47,10 +47,9 @@ class _WeatherDisplayerState extends State<WeatherDisplayer> {
           opacity: 0.6,
         ),
       ),
-      child: SingleChildScrollView(
+      child: Padding(
         padding: const EdgeInsets.only(top: 50 + 30),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
@@ -80,9 +79,9 @@ class _WeatherDisplayerState extends State<WeatherDisplayer> {
               ),
             ),
             _WeatherConditionDisplayer(weatherLocation: widget.weatherLocation),
-            const SizedBox(height: 15),
+            const Spacer(),
             const _Separator(),
-            const SizedBox(height: 30),
+            const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -99,7 +98,10 @@ class _WeatherDisplayerState extends State<WeatherDisplayer> {
                   value: widget.weatherLocation.humidity.toStringAsFixed(0),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: kToolbarHeight + 20,
+            ),
           ],
         ),
       ),
