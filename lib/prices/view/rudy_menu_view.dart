@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:price_repository/price_repository.dart';
 
@@ -156,7 +158,7 @@ class _OtherPricesMenu extends StatelessWidget {
   }
 }
 
-class _ImageDisplayer extends StatelessWidget {
+class _ImageDisplayer extends StatefulWidget {
   const _ImageDisplayer({
     Key? key,
     required this.path,
@@ -165,11 +167,31 @@ class _ImageDisplayer extends StatelessWidget {
   final String path;
 
   @override
-  Widget build(BuildContext context) {
-    return Image.asset(
-      path,
+  State<_ImageDisplayer> createState() => _ImageDisplayerState();
+}
+
+class _ImageDisplayerState extends State<_ImageDisplayer> {
+  late Image image;
+
+  @override
+  void initState() {
+    super.initState();
+
+    image = Image.asset(
+      widget.path,
       package: 'price_repository',
       scale: 0.95,
     );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(image.image, context);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return image;
   }
 }
