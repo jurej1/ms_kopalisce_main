@@ -18,11 +18,6 @@ dependencies:
     git:
       url: https://github.com/jurej1/coupon_repository.git
       ref: master
-  info_repository:
-    git:
-      url: https://github.com/jurej1/info_repository.git
-      ref: master
-
   cupertino_icons: ^1.0.2
   equatable: ^2.0.5
   firebase_auth: ^4.2.4
@@ -32,21 +27,26 @@ dependencies:
   flutter_bloc: 7.0.0
   flutter_flushbar: ^0.0.2
   flutter_fortune_wheel: ^1.2.0
+  flutter_native_splash: 2.2.9
   formz: ^0.4.1
   http: ^0.13.5
+  info_repository:
+    git:
+      url: https://github.com/jurej1/info_repository.git
+      ref: master
   price_repository:
     git:
       url: https://github.com/jurej1/price_repository.git
       ref: master
   qr_flutter: ^4.0.0
+  quiz_repository:
+    git:
+      url: https://github.com/jurej1/quiz_repository.git
+      ref: master
   weather_icons: ^3.0.0
   weather_repository:
     git:
       url: https://github.com/jurej1/weather_repository.git
-      ref: master
-  quiz_repository:
-    git:
-      url: https://github.com/jurej1/quiz_repository.git
       ref: master
 
 dev_dependencies:
@@ -58,3 +58,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+
+flutter_native_splash:
+  color: "#2196f3"
+  image: assets/sobota_svica.png
