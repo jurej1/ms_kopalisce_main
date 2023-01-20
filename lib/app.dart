@@ -2,6 +2,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:info_repository/info_repository.dart';
 import 'package:ms_kopalisce_main/prices/blocs/blocs.dart';
 import 'package:price_repository/price_repository.dart';
@@ -130,11 +131,13 @@ class _AppState extends State<App> {
                 } else if (state.status == AuthenticationStatus.authenticated) {
                   _navigatorState.currentState!.pushReplacement(HomeView.route(context));
                 }
+
+                FlutterNativeSplash.remove();
               }),
               child: child!,
             );
           },
-          home: const SplashScreen(),
+          home: Container(),
         ),
       ),
     );
