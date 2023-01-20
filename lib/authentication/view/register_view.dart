@@ -8,14 +8,23 @@ import '../functions/functions.dart';
 import '../widgets/widgets.dart';
 
 class RegisterView extends StatefulWidget {
+  const RegisterView({Key? key}) : super(key: key);
+
   static MaterialPageRoute route(BuildContext context) {
     return MaterialPageRoute(
       builder: (_) {
         return BlocProvider<RegisterFormBloc>(
           create: (_) => RegisterFormBloc(authenticationRepository: RepositoryProvider.of<AuthenticationRepository>(context)),
-          child: RegisterView(),
+          child: const RegisterView(),
         );
       },
+    );
+  }
+
+  static Widget provider(BuildContext context) {
+    return BlocProvider<RegisterFormBloc>(
+      create: (_) => RegisterFormBloc(authenticationRepository: RepositoryProvider.of<AuthenticationRepository>(context)),
+      child: const RegisterView(),
     );
   }
 
@@ -91,7 +100,8 @@ class _RegisterViewState extends State<RegisterView> {
                   title: 'Imate Račun? Vpišite se',
                   onPressed: () {
                     if (FocusScope.of(context).hasFocus) FocusScope.of(context).unfocus();
-                    Navigator.of(context).pushReplacement(LoginView.route(context));
+                    // Navigator.of(context).pushReplacement(LoginView.route(context));
+                    BlocProvider.of<AuthViewCubit>(context).updateView(AuthViewState.login);
                   },
                 ),
               ],

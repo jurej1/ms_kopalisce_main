@@ -2,6 +2,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:ms_kopalisce_main/authentication/view/auth_view.dart';
 
 import '../authentication.dart';
 import '../widgets/widgets.dart';
@@ -15,6 +16,13 @@ class LoginView extends StatefulWidget {
         child: const LoginView(),
       );
     });
+  }
+
+  static Widget provider(BuildContext context) {
+    return BlocProvider<LoginFormBloc>(
+      create: (context) => LoginFormBloc(authenticationRepository: RepositoryProvider.of<AuthenticationRepository>(context)),
+      child: const LoginView(),
+    );
   }
 
   @override
@@ -81,7 +89,8 @@ class _LoginViewState extends State<LoginView> {
                   title: 'Nimate še računa? Registracija',
                   onPressed: () {
                     if (FocusScope.of(context).hasFocus) FocusScope.of(context).unfocus();
-                    Navigator.of(context).pushReplacement(RegisterView.route(context));
+                    // Navigator.of(context).pushReplacement(RegisterView.route(context));
+                    BlocProvider.of<AuthViewCubit>(context).updateView(AuthViewState.register);
                   },
                 ),
               ],
