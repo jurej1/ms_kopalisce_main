@@ -127,18 +127,12 @@ class _AppState extends State<App> {
             return BlocListener<AuthenticationBloc, AuthenticationState>(
               listener: ((context, state) {
                 if (state.status == AuthenticationStatus.unauthenticated) {
-                  _navigatorState.currentState!.pushReplacement(LoginView.route(context))
-                    ..whenComplete(
-                      () => FlutterNativeSplash.remove(),
-                    );
+                  _navigatorState.currentState!.pushReplacement(LoginView.route(context));
                 } else if (state.status == AuthenticationStatus.authenticated) {
-                  _navigatorState.currentState!.pushReplacement(HomeView.route(context))
-                    ..whenComplete(
-                      () {
-                        FlutterNativeSplash.remove();
-                      },
-                    );
+                  _navigatorState.currentState!.pushReplacement(HomeView.route(context));
                 }
+
+                FlutterNativeSplash.remove();
               }),
               child: child!,
             );
