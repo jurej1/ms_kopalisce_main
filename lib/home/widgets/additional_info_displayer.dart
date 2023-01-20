@@ -12,7 +12,15 @@ class AdditionalInfoDisplayer extends StatelessWidget {
     return BlocBuilder<AdditionalInfoBloc, AdditionalInfoState>(
       builder: (context, state) {
         if (state is AdditionalInfoLoading) {
-          return Container();
+          return BlocBuilder<OpenTimeBloc, OpenTimeState>(
+            builder: (context, state) {
+              if (state is OpenTimeLoading) {
+                return Container();
+              } else {
+                return const LinearProgressIndicator();
+              }
+            },
+          );
         } else if (state is AdditionalInfoLoadSuccess) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
