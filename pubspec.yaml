@@ -60,5 +60,5 @@ flutter:
     - assets/
 
 flutter_native_splash:
-  color: "#2196f3"
+  color: "#ffffff"
   image: assets/sobota_svica.png
