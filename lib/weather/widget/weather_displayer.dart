@@ -3,10 +3,33 @@ import 'package:ms_kopalisce_main/weather/weather.dart';
 import 'package:weather_repository/weather_repository.dart';
 import 'package:intl/intl.dart';
 
-class WeatherDisplayer extends StatelessWidget {
+class WeatherDisplayer extends StatefulWidget {
   const WeatherDisplayer({Key? key, required this.weatherLocation}) : super(key: key);
 
   final WeatherLocation weatherLocation;
+
+  @override
+  State<WeatherDisplayer> createState() => _WeatherDisplayerState();
+}
+
+class _WeatherDisplayerState extends State<WeatherDisplayer> {
+  late AssetImage image;
+
+  @override
+  void initState() {
+    super.initState();
+
+    image = AssetImage(
+      widget.weatherLocation.imagePath,
+      package: 'weather_repository',
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    precacheImage(image, context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +43,7 @@ class WeatherDisplayer extends StatelessWidget {
         color: Colors.black,
         image: DecorationImage(
           fit: BoxFit.fill,
-          image: AssetImage(
-            weatherLocation.imagePath,
-            package: 'weather_repository',
-          ),
+          image: image,
           opacity: 0.6,
         ),
       ),
@@ -34,7 +54,7 @@ class WeatherDisplayer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              weatherLocation.name,
+              widget.weatherLocation.name,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -43,7 +63,7 @@ class WeatherDisplayer extends StatelessWidget {
               ),
             ),
             Text(
-              DateFormat('EEEE - d MMMM y').format(weatherLocation.lastUpdated),
+              DateFormat('EEEE - d MMMM y').format(widget.weatherLocation.lastUpdated),
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -52,14 +72,14 @@ class WeatherDisplayer extends StatelessWidget {
             ),
             const SizedBox(height: 30),
             Text(
-              weatherLocation.tempC.toStringAsFixed(0) + '°',
+              widget.weatherLocation.tempC.toStringAsFixed(0) + '°',
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 70,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            _WeatherConditionDisplayer(weatherLocation: weatherLocation),
+            _WeatherConditionDisplayer(weatherLocation: widget.weatherLocation),
             const SizedBox(height: 15),
             const _Separator(),
             const SizedBox(height: 30),
@@ -69,14 +89,14 @@ class WeatherDisplayer extends StatelessWidget {
                 AdditionalWeatherInfo(
                   title: 'Wind',
                   units: 'km/h',
-                  val: (weatherLocation.windKph) / 40,
-                  value: weatherLocation.windKph.toStringAsFixed(0),
+                  val: (widget.weatherLocation.windKph) / 40,
+                  value: widget.weatherLocation.windKph.toStringAsFixed(0),
                 ),
                 AdditionalWeatherInfo(
                   title: 'Humidity',
                   units: '%',
-                  val: (weatherLocation.humidity) / 100,
-                  value: weatherLocation.humidity.toStringAsFixed(0),
+                  val: (widget.weatherLocation.humidity) / 100,
+                  value: widget.weatherLocation.humidity.toStringAsFixed(0),
                 ),
               ],
             )
