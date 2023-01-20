@@ -11,7 +11,7 @@ class QuizCompletedDisplayer extends StatelessWidget {
     return Column(
       children: [
         const Center(
-          child: Text('Quiz Completed'),
+          child: Text('Kviz opravljen :)'),
         ),
         BlocBuilder<QuizAnswerRecordCubit, List<bool>>(
           builder: (context, state) {
