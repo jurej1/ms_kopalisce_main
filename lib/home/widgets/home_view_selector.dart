@@ -32,15 +32,34 @@ class HomeViewSelector extends StatelessWidget implements PreferredSizeWidget {
                 (e) {
                   final bool isSelected = state == e;
 
+                  final bool isHome = e.isHome;
+
+                  Widget iconWidget = IconButton(
+                    color: isSelected ? Colors.white : Colors.white.withOpacity(0.7),
+                    icon: Icon(e.mapStateToIcon()),
+                    onPressed: () {
+                      BlocProvider.of<HomeViewSelectorCubit>(context).valueUpdatedEnum(e);
+                    },
+                  );
+
+                  Widget homeWidget = InkWell(
+                    borderRadius: BorderRadius.circular(10),
+                    onTap: () {
+                      BlocProvider.of<HomeViewSelectorCubit>(context).valueUpdatedEnum(e);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(5),
+                      height: kMinInteractiveDimension,
+                      width: kMinInteractiveDimension,
+                      child: InkWell(
+                        child: Image.asset('assets/sobota_svica.png'),
+                      ),
+                    ),
+                  );
+
                   return Transform.scale(
                     scale: isSelected ? 1.1 : 0.9,
-                    child: IconButton(
-                      color: isSelected ? Colors.white : Colors.white.withOpacity(0.7),
-                      icon: Icon(e.mapStateToIcon()),
-                      onPressed: () {
-                        BlocProvider.of<HomeViewSelectorCubit>(context).valueUpdatedEnum(e);
-                      },
-                    ),
+                    child: isHome ? homeWidget : iconWidget,
                   );
                 },
               ).toList(),
