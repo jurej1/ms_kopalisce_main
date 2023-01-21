@@ -21,6 +21,8 @@ class RudyMneuView extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
           children: [
+            const _OtherPricesMenu(),
+            const _LineSeparator(),
             _FoodItemTicker(
               key: UniqueKey(),
               item: RudyRepository.friskoDomaceItem,
@@ -35,8 +37,6 @@ class RudyMneuView extends StatelessWidget {
             const _LineSeparator(),
             const _OtherSelection(),
             _ImageDisplayer(path: RudyRepository.ostalaPonudba),
-            const _LineSeparator(),
-            const _OtherPricesMenu(),
           ],
         ),
       ),
@@ -129,35 +129,64 @@ class _OtherPricesMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
+    final size = MediaQuery.of(context).size;
+
+    final buttonStyle = ElevatedButton.styleFrom(
+      tapTargetSize: MaterialTapTargetSize.padded,
+      padding: const EdgeInsets.symmetric(
+        vertical: 5,
+        horizontal: 15,
+      ),
+    );
+
+    return GridView(
+      shrinkWrap: true,
+      padding: EdgeInsets.zero,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
+        childAspectRatio: 1.0,
+      ),
+      physics: const NeverScrollableScrollPhysics(),
       children: [
         ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            tapTargetSize: MaterialTapTargetSize.padded,
-            padding: const EdgeInsets.symmetric(
-              vertical: 5,
-              horizontal: 15,
-            ),
-          ),
+          style: buttonStyle,
           onPressed: () {
             Navigator.of(context).push(BathroomServicesView.route(context));
           },
-          child: const Text('Cenik kart'),
-        ),
-        const SizedBox(height: 20),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            tapTargetSize: MaterialTapTargetSize.padded,
-            padding: const EdgeInsets.symmetric(
-              vertical: 5,
-              horizontal: 15,
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.store),
+              // Text('Cenik kart'),
+            ],
           ),
+        ),
+        ElevatedButton(
+          style: buttonStyle,
           onPressed: () {
             Navigator.of(context).push(FoodPricesView.route(context));
           },
-          child: const Text('Cenik ostale hrane\n in pijace'),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.food_bank_rounded),
+              // Text('Cenik ostale \nhrane in pijače'),
+            ],
+          ),
+        ),
+        ElevatedButton(
+          style: buttonStyle,
+          onPressed: () {
+            Navigator.of(context).push(BathroomServicesView.route(context));
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.shop_two),
+            ],
+          ),
         ),
       ],
     );
