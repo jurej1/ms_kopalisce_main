@@ -33,15 +33,13 @@ class QuizHomeView extends StatelessWidget {
             ),
             const SizedBox(height: 20),
             SizedBox(
-              width: size.width * 0.4,
-              child: ElevatedButton(
-                onPressed: () {
-                  //Start the Quiz
-                  Navigator.of(context).push(QuizView.route(context));
-                },
-                child: const Text('Začni z Kvizem'),
-              ),
-            ),
+                width: size.width * 0.4,
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).push(QuizView.route(context));
+                  },
+                  child: const Text('Začni z kvizem'),
+                )),
           ],
         ),
       ),
