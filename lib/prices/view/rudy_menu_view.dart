@@ -21,10 +21,16 @@ class RudyMneuView extends StatelessWidget {
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 50),
           children: [
-            _FoodItemTicker(item: RudyRepository.friskoDomaceItem),
+            _FoodItemTicker(
+              key: UniqueKey(),
+              item: RudyRepository.friskoDomaceItem,
+            ),
             _ImageDisplayer(path: RudyRepository.friskoDomace),
             const _LineSeparator(),
-            _FoodItemTicker(item: RudyRepository.rudijevaBombetkaItem),
+            _FoodItemTicker(
+              key: UniqueKey(),
+              item: RudyRepository.rudijevaBombetkaItem,
+            ),
             _ImageDisplayer(path: RudyRepository.rudijevaBombetka),
             const _LineSeparator(),
             const _OtherSelection(),
@@ -88,7 +94,7 @@ class _OtherSelection extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const Text(
-          'Ostala Ponudba',
+          'Ostala ponudba',
           style: TextStyle(
             fontWeight: FontWeight.w500,
             fontSize: 23,
@@ -137,7 +143,7 @@ class _OtherPricesMenu extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).push(BathroomServicesView.route(context));
           },
-          child: const Text('Cenik Kart'),
+          child: const Text('Cenik kart'),
         ),
         const SizedBox(height: 20),
         ElevatedButton(
