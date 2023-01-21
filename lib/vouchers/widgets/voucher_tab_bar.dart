@@ -28,7 +28,7 @@ class VoucherTabBar extends StatelessWidget {
                     scale: state == VoucherStatus.valid ? 1.1 : 0.95,
                     child: TextButton(
                       child: const Text(
-                        'Open',
+                        'Na Vojo',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -43,7 +43,7 @@ class VoucherTabBar extends StatelessWidget {
                     scale: state == VoucherStatus.used ? 1.1 : 0.95,
                     child: TextButton(
                       child: const Text(
-                        'Used',
+                        'Uporabljeni',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
@@ -58,7 +58,7 @@ class VoucherTabBar extends StatelessWidget {
                     scale: state == VoucherStatus.expired ? 1.1 : 0.95,
                     child: TextButton(
                       child: const Text(
-                        'Expired',
+                        'Potečeni',
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 12,
