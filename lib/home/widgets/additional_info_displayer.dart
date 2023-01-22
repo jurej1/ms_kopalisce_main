@@ -25,9 +25,9 @@ class AdditionalInfoDisplayer extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
+              Text(
                 'Ostale Informacije',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               if (state.values.isEmpty) const Text('Zaenkrat ni nobenih dodatnih informacij'),
               if (state.values.isNotEmpty) _Builder(values: state.values),
@@ -52,11 +52,16 @@ class _Builder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final style = Theme.of(context).textTheme.bodyLarge;
+
     return ListView.separated(
       shrinkWrap: true,
       itemBuilder: (context, index) {
         final val = values[index];
-        return Text(val.val);
+        return Text(
+          val.val,
+          style: style,
+        );
       },
       separatorBuilder: (context, index) {
         return Container(

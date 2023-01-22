@@ -23,13 +23,13 @@ class RudyMneuView extends StatelessWidget {
           children: [
             const _OtherPricesMenu(),
             const _LineSeparator(),
-            _FoodItemTicker(
+            _FoodItemTicket(
               key: UniqueKey(),
               item: RudyRepository.friskoDomaceItem,
             ),
             _ImageDisplayer(path: RudyRepository.friskoDomace),
             const _LineSeparator(),
-            _FoodItemTicker(
+            _FoodItemTicket(
               key: UniqueKey(),
               item: RudyRepository.rudijevaBombetkaItem,
             ),
@@ -45,8 +45,8 @@ class RudyMneuView extends StatelessWidget {
   }
 }
 
-class _FoodItemTicker extends StatelessWidget {
-  const _FoodItemTicker({
+class _FoodItemTicket extends StatelessWidget {
+  const _FoodItemTicket({
     Key? key,
     required this.item,
   }) : super(key: key);
@@ -66,7 +66,12 @@ class _FoodItemTicker extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-        Text(item.description ?? ''),
+        Text(
+          item.description ?? '',
+          style: const TextStyle(
+            fontSize: 15,
+          ),
+        ),
       ],
     );
   }
@@ -114,10 +119,16 @@ class _OtherSelection extends StatelessWidget {
           item.title,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
+            fontSize: 16,
           ),
         ),
         const SizedBox(height: 5),
-        Text(item.description ?? ''),
+        Text(
+          item.description ?? '',
+          style: const TextStyle(
+            fontSize: 15,
+          ),
+        ),
         const SizedBox(height: 10),
       ],
     );
@@ -129,66 +140,77 @@ class _OtherPricesMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    return GridView(
+      shrinkWrap: true,
+      padding: EdgeInsets.zero,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 15,
+        mainAxisSpacing: 15,
+        childAspectRatio: 1,
+      ),
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        _GridButton(
+          onPressed: () {
+            Navigator.of(context).push(BathroomServicesView.route(context));
+          },
+          iconData: Icons.store,
+          text: 'Karte',
+        ),
+        _GridButton(
+          onPressed: () {
+            Navigator.of(context).push(FoodPricesView.route(context));
+          },
+          iconData: Icons.food_bank_rounded,
+          text: 'Ostalo',
+        ),
+        _GridButton(
+          onPressed: () {
+            //TODO
+          },
+          iconData: Icons.shop_two,
+          text: 'Trgovina',
+        )
+      ],
+    );
+  }
+}
 
+class _GridButton extends StatelessWidget {
+  const _GridButton({
+    Key? key,
+    required this.onPressed,
+    required this.iconData,
+    required this.text,
+  }) : super(key: key);
+
+  final VoidCallback onPressed;
+  final IconData iconData;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
     final buttonStyle = ElevatedButton.styleFrom(
       tapTargetSize: MaterialTapTargetSize.padded,
       padding: const EdgeInsets.symmetric(
         vertical: 5,
         horizontal: 15,
       ),
+      onPrimary: Colors.white,
+      primary: Colors.blue.shade300,
     );
 
-    return GridView(
-      shrinkWrap: true,
-      padding: EdgeInsets.zero,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 10,
-        mainAxisSpacing: 10,
-        childAspectRatio: 1.0,
+    return ElevatedButton(
+      style: buttonStyle,
+      onPressed: onPressed,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(iconData),
+          Text(text),
+        ],
       ),
-      physics: const NeverScrollableScrollPhysics(),
-      children: [
-        ElevatedButton(
-          style: buttonStyle,
-          onPressed: () {
-            Navigator.of(context).push(BathroomServicesView.route(context));
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(Icons.store),
-              // Text('Cenik kart'),
-            ],
-          ),
-        ),
-        ElevatedButton(
-          style: buttonStyle,
-          onPressed: () {
-            Navigator.of(context).push(FoodPricesView.route(context));
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.food_bank_rounded),
-              // Text('Cenik ostale \nhrane in pijače'),
-            ],
-          ),
-        ),
-        ElevatedButton(
-          style: buttonStyle,
-          onPressed: () {
-            Navigator.of(context).push(BathroomServicesView.route(context));
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Icon(Icons.shop_two),
-            ],
-          ),
-        ),
-      ],
     );
   }
 }
