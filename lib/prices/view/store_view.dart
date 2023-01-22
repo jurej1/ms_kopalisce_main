@@ -18,42 +18,76 @@ class StoreView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Rudijeva trgovina'),
+        title: const Text(
+          'Rudijeva trgovina',
+          style: TextStyle(color: Colors.blue),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.blue,
+        ),
       ),
       body: GridView.builder(
-        padding: const EdgeInsets.all(10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         shrinkWrap: true,
         itemCount: items.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           childAspectRatio: 1,
           crossAxisSpacing: 20,
+          mainAxisExtent: 220,
           mainAxisSpacing: 20,
         ),
         itemBuilder: (context, index) {
           final item = items[index];
           return GridTile(
             key: ValueKey(item),
-            child: Container(
-              alignment: Alignment.bottomLeft,
-              padding: const EdgeInsets.only(left: 10, bottom: 10),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
-                  fit: BoxFit.fill,
-                  image: AssetImage(
-                    item.imagesPaths.first,
-                    package: 'price_repository',
+            child: Card(
+              color: Colors.blue,
+              margin: EdgeInsets.zero,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+              elevation: 3,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      alignment: Alignment.bottomLeft,
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(10),
+                        image: DecorationImage(
+                          fit: BoxFit.cover,
+                          image: AssetImage(
+                            item.imagesPaths.first,
+                            package: 'price_repository',
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              child: Text(
-                '${item.name} \n€ ${item.price}',
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      top: 5,
+                      left: 5,
+                      bottom: 5,
+                    ),
+                    child: Text(
+                      '${item.name} \n€ ${item.price}',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
               ),
             ),
           );
