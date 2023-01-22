@@ -17,6 +17,7 @@ class VoucherTabBar extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
         child: Material(
+          elevation: 3,
           color: Colors.blue,
           borderRadius: const BorderRadius.all(Radius.circular(25)),
           child: BlocBuilder<VoucherViewSelectorCubit, VoucherStatus>(
