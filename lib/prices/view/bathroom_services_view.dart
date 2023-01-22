@@ -19,7 +19,19 @@ class BathroomServicesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cenik  Kart'),
+        title: const Text(
+          'Cenik kart',
+          style: TextStyle(color: Colors.blue),
+        ),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.blue,
+        ),
       ),
       body: BlocBuilder<BathroomServicesBloc, BathroomServicesState>(
         builder: (context, state) {

@@ -17,7 +17,17 @@ class FoodPricesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.blue,
+        ),
+      ),
       body: BlocBuilder<FoodPricesListBloc, FoodPricesListState>(
         builder: (context, state) {
           if (state is FoodPricesListLoading) {
