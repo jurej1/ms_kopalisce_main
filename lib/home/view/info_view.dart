@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ms_kopalisce_main/home/home.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../authentication/authentication.dart';
 
 class InfoView extends StatelessWidget {
@@ -22,6 +22,7 @@ class InfoView extends StatelessWidget {
       // ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(10),
+        physics: const ClampingScrollPhysics(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
