@@ -20,7 +20,6 @@ class QuizDisplayer extends StatelessWidget {
     );
   }
 
-  final _borderRadius = BorderRadius.circular(15);
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
@@ -32,25 +31,8 @@ class QuizDisplayer extends StatelessWidget {
           width: size.width,
           child: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.all(10),
-                height: 10,
-                width: size.width,
-                decoration: BoxDecoration(
-                  color: Colors.grey.shade300,
-                  borderRadius: _borderRadius,
-                ),
-                child: ClipRRect(
-                  borderRadius: _borderRadius,
-                  child: FractionallySizedBox(
-                    alignment: Alignment.centerLeft,
-                    heightFactor: 1,
-                    widthFactor: (state.activeQuestionIndex) / state.question.length,
-                    child: Container(
-                      color: Colors.blue,
-                    ),
-                  ),
-                ),
+              _ProgressBar(
+                widthFactor: (state.activeQuestionIndex) / state.question.length,
               ),
               Expanded(
                 child: state.status.isPlaying
@@ -63,6 +45,39 @@ class QuizDisplayer extends StatelessWidget {
           ),
         );
       },
+    );
+  }
+}
+
+class _ProgressBar extends StatelessWidget {
+  const _ProgressBar({Key? key, required this.widthFactor}) : super(key: key);
+
+  final double widthFactor;
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    final _borderRadius = BorderRadius.circular(15);
+
+    return Container(
+      margin: const EdgeInsets.all(10),
+      height: 10,
+      width: size.width,
+      decoration: BoxDecoration(
+        color: Colors.grey.shade300,
+        borderRadius: _borderRadius,
+      ),
+      child: ClipRRect(
+        borderRadius: _borderRadius,
+        child: FractionallySizedBox(
+          alignment: Alignment.centerLeft,
+          heightFactor: 1,
+          widthFactor: widthFactor,
+          child: Container(
+            color: Colors.blue,
+          ),
+        ),
+      ),
     );
   }
 }

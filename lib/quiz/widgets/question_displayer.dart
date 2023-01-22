@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_flushbar/flutter_flushbar.dart';
-import 'package:ms_kopalisce_main/quiz/quiz.dart';
 import 'package:quiz_repository/quiz_repository.dart';
+
+import 'package:ms_kopalisce_main/quiz/quiz.dart';
 
 class QuestionDisplayer extends StatelessWidget {
   const QuestionDisplayer._({Key? key}) : super(key: key);
@@ -35,7 +36,7 @@ class QuestionDisplayer extends StatelessWidget {
                     Icons.close,
                     color: Colors.red,
                   ),
-            message: state.isSelectedAnwserCorrect ? 'Correct' : 'Wrong',
+            message: state.isSelectedAnwserCorrect ? 'Pravilno' : 'Narobe',
             flushbarStyle: FlushbarStyle.FLOATING,
             titleColor: state.isSelectedAnwserCorrect ? Colors.green : Colors.red,
             borderRadius: BorderRadius.circular(10),
@@ -54,20 +55,7 @@ class QuestionDisplayer extends StatelessWidget {
           child: ListView(
             shrinkWrap: true,
             children: [
-              Container(
-                height: size.height * 0.3,
-                width: size.width,
-                alignment: Alignment.center,
-                color: Colors.grey.withOpacity(0.1),
-                child: Text(
-                  maxLines: 6,
-                  state.question.questionText,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    overflow: TextOverflow.clip,
-                  ),
-                ),
-              ),
+              _TextDisplayer(text: state.question.questionText),
               GridView.builder(
                 padding: const EdgeInsets.all(10),
                 physics: const NeverScrollableScrollPhysics(),
@@ -96,5 +84,37 @@ class QuizScrollBehaviour extends ScrollBehavior {
   @override
   Widget buildOverscrollIndicator(BuildContext context, Widget child, ScrollableDetails details) {
     return child;
+  }
+}
+
+class _TextDisplayer extends StatelessWidget {
+  final String text;
+  const _TextDisplayer({
+    Key? key,
+    required this.text,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
+    return Container(
+      height: size.height * 0.3,
+      width: size.width,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+      ),
+      alignment: Alignment.center,
+      color: Colors.grey.withOpacity(0.1),
+      child: Text(
+        maxLines: 8,
+        text,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          overflow: TextOverflow.clip,
+          fontSize: 16,
+        ),
+      ),
+    );
   }
 }
