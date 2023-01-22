@@ -35,7 +35,8 @@ class StoreView extends StatelessWidget {
           return GridTile(
             key: ValueKey(item),
             child: Container(
-              child: const Text('hello'),
+              alignment: Alignment.bottomLeft,
+              padding: EdgeInsets.only(left: 10, bottom: 10),
               decoration: BoxDecoration(
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(10),
@@ -44,6 +45,13 @@ class StoreView extends StatelessWidget {
                     item.imagesPaths.first,
                     package: 'price_repository',
                   ),
+                ),
+              ),
+              child: Text(
+                '${item.name} \n€ ${item.price}',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
                 ),
               ),
             ),
