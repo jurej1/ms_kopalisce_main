@@ -70,14 +70,15 @@ class _VoucherValidListDisplayer extends StatelessWidget {
         if (state is VoucherListLoading) {
           return const _Loading();
         } else if (state is VoucherListSucess) {
+          if (state.vouchers.isEmpty) {
+            return const _EmptyList();
+          }
           return VoucherList(
             vouchers: state.vouchers,
             isOnBottom: () {
               BlocProvider.of<VoucherValidListBloc>(context).add(VoucherListLoadMoreRequested());
             },
           );
-        } else if (state is VoucherListEmpty) {
-          return const _EmptyList();
         }
         return Container();
       },
@@ -95,14 +96,15 @@ class _VoucherUsedListDisplayer extends StatelessWidget {
         if (state is VoucherListLoading) {
           return const _Loading();
         } else if (state is VoucherListSucess) {
+          if (state.vouchers.isEmpty) {
+            return const _EmptyList();
+          }
           return VoucherList(
             vouchers: state.vouchers,
             isOnBottom: () {
               BlocProvider.of<VoucherUsedListBloc>(context).add(VoucherListLoadMoreRequested());
             },
           );
-        } else if (state is VoucherListEmpty) {
-          return const _EmptyList();
         }
         return Container();
       },
@@ -120,14 +122,15 @@ class _VoucherExpiredListDisplayer extends StatelessWidget {
         if (state is VoucherListLoading) {
           return const _Loading();
         } else if (state is VoucherListSucess) {
+          if (state.vouchers.isEmpty) {
+            return const _EmptyList();
+          }
           return VoucherList(
             vouchers: state.vouchers,
             isOnBottom: () {
               BlocProvider.of<VoucherExpiredListBloc>(context).add(VoucherListLoadMoreRequested());
             },
           );
-        } else if (state is VoucherListEmpty) {
-          return const _EmptyList();
         }
         return Container();
       },

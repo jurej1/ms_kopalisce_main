@@ -14,6 +14,4 @@ class VoucherListSucess extends VoucherListState {
   const VoucherListSucess({required this.vouchers, this.lastDocument, required this.hasReachedMax});
 }
 
-class VoucherListEmpty extends VoucherListState {}
-
 class VoucherListFail extends VoucherListState {}

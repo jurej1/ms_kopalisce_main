@@ -53,7 +53,7 @@ abstract class VoucherListBloc extends Bloc<VoucherListEvent, VoucherListState> 
             .toList();
 
         if (listData.isEmpty) {
-          yield VoucherListEmpty();
+          yield const VoucherListSucess(hasReachedMax: true, vouchers: []);
         } else {
           yield VoucherListSucess(
             vouchers: listData,
