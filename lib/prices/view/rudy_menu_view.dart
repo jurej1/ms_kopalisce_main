@@ -145,8 +145,7 @@ class _OtherPricesMenu extends StatelessWidget {
       padding: EdgeInsets.zero,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        crossAxisSpacing: 15,
-        mainAxisSpacing: 15,
+        crossAxisSpacing: 30,
         childAspectRatio: 1,
       ),
       physics: const NeverScrollableScrollPhysics(),
@@ -198,7 +197,7 @@ class _GridButton extends StatelessWidget {
         horizontal: 15,
       ),
       onPrimary: Colors.white,
-      primary: Colors.blue.shade300,
+      primary: Colors.blue,
     );
 
     return ElevatedButton(

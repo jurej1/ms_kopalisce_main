@@ -55,6 +55,7 @@ class _Builder extends StatelessWidget {
     final style = Theme.of(context).textTheme.bodyLarge;
 
     return ListView.separated(
+      physics: const ClampingScrollPhysics(),
       shrinkWrap: true,
       itemBuilder: (context, index) {
         final val = values[index];
@@ -65,7 +66,7 @@ class _Builder extends StatelessWidget {
       },
       separatorBuilder: (context, index) {
         return Container(
-          margin: EdgeInsets.symmetric(vertical: 10),
+          margin: const EdgeInsets.symmetric(vertical: 10),
         );
       },
       itemCount: values.length,
