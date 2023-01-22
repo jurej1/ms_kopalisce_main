@@ -12,7 +12,7 @@ class QuizRewardInitial extends QuizRewardState {}
 class QuizRewardLoading extends QuizRewardState {}
 
 class QuizRewardSuccess extends QuizRewardState {
-  final Voucher value;
+  final VoucherUser value;
 
   const QuizRewardSuccess(this.value);
 

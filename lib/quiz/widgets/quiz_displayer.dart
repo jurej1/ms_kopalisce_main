@@ -1,5 +1,7 @@
+import 'package:coupon_repository/coupon_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:ms_kopalisce_main/authentication/authentication.dart';
 import 'package:ms_kopalisce_main/quiz/quiz.dart';
 import 'package:quiz_repository/quiz_repository.dart';
 
@@ -7,14 +9,22 @@ class QuizDisplayer extends StatelessWidget {
   QuizDisplayer._({Key? key}) : super(key: key);
 
   static provider(List<Question> questions) {
+    final quizAnwserRecordCubit = QuizAnswerRecordCubit();
     return MultiBlocProvider(
       providers: [
         BlocProvider(
           create: (context) => QuizDisplayerCubit(questions: questions),
         ),
         BlocProvider(
-          create: (context) => QuizAnswerRecordCubit(),
-        )
+          create: (context) => quizAnwserRecordCubit,
+        ),
+        BlocProvider(
+          create: (context) => QuizRewardBloc(
+            couponRepository: RepositoryProvider.of<CouponRepository>(context),
+            quizAnswerRecordCubit: quizAnwserRecordCubit,
+            authenticationBloc: BlocProvider.of<AuthenticationBloc>(context),
+          ),
+        ),
       ],
       child: QuizDisplayer._(),
     );
@@ -24,7 +34,12 @@ class QuizDisplayer extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
 
-    return BlocBuilder<QuizDisplayerCubit, QuizDisplayerState>(
+    return BlocConsumer<QuizDisplayerCubit, QuizDisplayerState>(
+      listener: (context, state) {
+        if (state.status.isDone) {
+          BlocProvider.of<QuizRewardBloc>(context).add(QuizRewardLoadRequested());
+        }
+      },
       builder: (context, state) {
         return SizedBox(
           height: size.height,
