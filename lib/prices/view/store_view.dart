@@ -35,6 +35,7 @@ class StoreView extends StatelessWidget {
       body: GridView.builder(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         shrinkWrap: true,
+        physics: const ClampingScrollPhysics(),
         itemCount: items.length,
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
@@ -45,54 +46,69 @@ class StoreView extends StatelessWidget {
         ),
         itemBuilder: (context, index) {
           final item = items[index];
-          return GridTile(
+          return _GridItem(
             key: ValueKey(item),
-            child: Card(
-              color: Colors.blue,
-              margin: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-              elevation: 3,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Container(
-                      alignment: Alignment.bottomLeft,
-                      decoration: BoxDecoration(
-                        color: Colors.blue,
-                        borderRadius: BorderRadius.circular(10),
-                        image: DecorationImage(
-                          fit: BoxFit.cover,
-                          image: AssetImage(
-                            item.imagesPaths.first,
-                            package: 'price_repository',
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 5,
-                      left: 5,
-                      bottom: 5,
-                    ),
-                    child: Text(
-                      '${item.name} \n€ ${item.price}',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            item: item,
           );
         },
       ),
     );
+  }
+}
+
+class _GridItem extends StatelessWidget {
+  const _GridItem({
+    Key? key,
+    required this.item,
+  }) : super(key: key);
+
+  final StoreItem item;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.blue,
+      margin: EdgeInsets.zero,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      elevation: 3,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Container(
+              alignment: Alignment.bottomLeft,
+              decoration: BoxDecoration(
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(10),
+                image: DecorationImage(
+                  fit: BoxFit.cover,
+                  image: AssetImage(
+                    item.imagesPaths.first,
+                    package: 'price_repository',
+                  ),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              top: 5,
+              left: 5,
+              bottom: 5,
+            ),
+            child: Text(
+              '${item.name} \n€ ${item.price}',
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+              ),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
+    );
+    ;
   }
 }
