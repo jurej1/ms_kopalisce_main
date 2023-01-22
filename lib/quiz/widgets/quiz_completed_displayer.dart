@@ -20,6 +20,7 @@ class QuizCompletedDisplayer extends StatelessWidget {
             return Text('Pravilno: $nrRight / ${state.length}');
           },
         ),
+        const SizedBox(height: 20),
         const _RewardDisplayer(),
       ],
     );
@@ -49,7 +50,9 @@ class _RewardDisplayer extends StatelessWidget {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              const SizedBox(height: 10),
               const Text('Česitamo zaslužili ste si naslednjo nagrado'),
+              const SizedBox(height: 10),
               QrImage(
                 data: voucher.voucherNumber,
                 version: QrVersions.auto,
@@ -64,7 +67,8 @@ class _RewardDisplayer extends StatelessWidget {
                 ),
               ),
               Text(voucher.name),
-              const Text('Kupo je bil že dodan v vašo zbirko'),
+              const SizedBox(height: 10),
+              const Text('Kupon je bil že dodan v vašo zbirko'),
             ],
           );
         }
