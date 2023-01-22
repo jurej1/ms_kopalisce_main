@@ -49,6 +49,9 @@ class QuizRewardBloc extends Bloc<QuizRewardEvent, QuizRewardState> {
           unit: winnerItem.unit,
           voucherNumber: winnerItem.voucherNumber,
         );
+
+        await couponRepository.addUserVoucher(reward);
+
         yield QuizRewardSuccess(reward);
       } catch (error) {
         yield QuizRewardFail();
