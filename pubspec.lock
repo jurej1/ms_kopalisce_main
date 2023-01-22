@@ -412,7 +412,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "24dc72d1f2b2674f72295d2c59fdb1386ce8ec6e"
+      resolved-ref: d471accb6a06fe5d8ea75223ae964a27588a844e
       url: "https://github.com/jurej1/price_repository.git"
     source: git
     version: "0.0.0"
