@@ -58,12 +58,12 @@ class VoucherListItem extends StatelessWidget {
                         fontSize: 18,
                       ),
                     ),
-                    Text('Velja do: ${DateFormat('DD.MM.yyyy').format(item.expiresOn)}'),
+                    Text('Velja do: ${DateFormat('dd.MM.yyyy').format(item.expiresOn)}'),
                   ],
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.orange,
+                    primary: Colors.red,
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     padding: EdgeInsets.zero,
                     shape: const RoundedRectangleBorder(
@@ -78,7 +78,7 @@ class VoucherListItem extends StatelessWidget {
                   child: const Text(
                     'QR',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.white,
                     ),
                   ),
                 ),
