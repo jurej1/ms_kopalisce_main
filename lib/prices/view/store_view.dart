@@ -36,11 +36,12 @@ class StoreView extends StatelessWidget {
             key: ValueKey(item),
             child: Container(
               alignment: Alignment.bottomLeft,
-              padding: EdgeInsets.only(left: 10, bottom: 10),
+              padding: const EdgeInsets.only(left: 10, bottom: 10),
               decoration: BoxDecoration(
                 color: Colors.blue,
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
+                  fit: BoxFit.fill,
                   image: AssetImage(
                     item.imagesPaths.first,
                     package: 'price_repository',
@@ -49,7 +50,7 @@ class StoreView extends StatelessWidget {
               ),
               child: Text(
                 '${item.name} \n€ ${item.price}',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                 ),
