@@ -8,4 +8,12 @@ class QuizAnswerRecordCubit extends Cubit<List<bool>> {
 
     emit(stateList..add(anwser));
   }
+
+  bool get areAllAnwsersCorrect {
+    return state.every((element) => element == true);
+  }
+
+  int get amountRightAnwsers {
+    return state.where((element) => element).toList().length;
+  }
 }
