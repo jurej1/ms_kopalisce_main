@@ -50,7 +50,10 @@ class _VoucherListState extends State<VoucherList> {
       },
       itemBuilder: (context, index) {
         final item = widget.vouchers[index];
-        return VoucherListItem(item: item);
+        return VoucherListItem(
+          key: ValueKey(item),
+          item: item,
+        );
       },
     );
   }

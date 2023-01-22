@@ -118,6 +118,7 @@ class _AppState extends State<App> {
           ),
         ],
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           navigatorKey: _navigatorState,
           title: 'Flutter Demo',
           theme: ThemeData(
