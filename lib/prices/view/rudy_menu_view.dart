@@ -167,7 +167,7 @@ class _OtherPricesMenu extends StatelessWidget {
         ),
         _GridButton(
           onPressed: () {
-            //TODO
+            Navigator.of(context).push(StoreView.route());
           },
           iconData: Icons.shop_two,
           text: 'Trgovina',
