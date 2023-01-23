@@ -60,6 +60,6 @@ class _ErrorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text('Sorry But there was an error'));
+    return const Center(child: Text('Oprostite prišlo je do napake'));
   }
 }
