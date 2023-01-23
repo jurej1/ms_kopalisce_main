@@ -52,7 +52,7 @@ class HomeViewSelector extends StatelessWidget implements PreferredSizeWidget {
                       height: kMinInteractiveDimension,
                       width: kMinInteractiveDimension,
                       child: InkWell(
-                        child: Image.asset('assets/sobota_svica.png'),
+                        child: Image.asset('assets/sobota_svica_white.png'),
                       ),
                     ),
                   );
