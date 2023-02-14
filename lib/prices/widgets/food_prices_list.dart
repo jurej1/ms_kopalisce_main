@@ -20,6 +20,7 @@ class FoodPricesListBuilder extends StatelessWidget {
       height: size.height,
       width: size.width,
       child: ListView.separated(
+        physics: const ClampingScrollPhysics(),
         itemCount: FoodItemType.values.length,
         padding: const EdgeInsets.all(20),
         shrinkWrap: true,
