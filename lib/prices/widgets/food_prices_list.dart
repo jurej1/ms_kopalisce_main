@@ -27,10 +27,15 @@ class FoodPricesListBuilder extends StatelessWidget {
         itemBuilder: (context, index) {
           final type = FoodItemType.values[index];
           final sortedItems = sortByType(type);
-          return FoodItemsList(
-            title: type.toStringReadable(),
-            sortedItems: sortedItems,
-          );
+
+          if (sortedItems.isNotEmpty) {
+            return FoodItemsList(
+              title: type.toStringReadable(),
+              sortedItems: sortedItems,
+            );
+          }
+
+          return Container();
         },
         separatorBuilder: (context, index) {
           return const SizedBox(height: 20);
