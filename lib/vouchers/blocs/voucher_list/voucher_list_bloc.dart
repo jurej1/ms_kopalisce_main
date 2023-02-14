@@ -62,18 +62,12 @@ abstract class VoucherListBloc extends Bloc<VoucherListEvent, VoucherListState> 
             invalidItems.map((e) => e.copyWith(status: VoucherStatus.expired)).forEach((element) async {
               await _couponRepository.updateUserVoucher(element);
             });
-            yield VoucherListSucess(
-              vouchers: validItems,
-              lastDocument: querySnapshot.docs.last,
-              hasReachedMax: listData.length < _limit,
-            );
-          } else {
-            yield VoucherListSucess(
-              vouchers: validItems,
-              lastDocument: querySnapshot.docs.last,
-              hasReachedMax: listData.length < _limit,
-            );
           }
+          yield VoucherListSucess(
+            vouchers: validItems,
+            lastDocument: querySnapshot.docs.last,
+            hasReachedMax: listData.length < _limit,
+          );
         }
       } catch (e) {
         yield VoucherListFail();
@@ -101,7 +95,16 @@ abstract class VoucherListBloc extends Bloc<VoucherListEvent, VoucherListState> 
             )
             .toList();
 
-        vouchers = vouchers + listData;
+        List<VoucherUser> invalidItems = listData..where((element) => element.isExpired());
+        List<VoucherUser> validItems = listData..where((element) => !element.isExpired());
+
+        if (invalidItems.isNotEmpty) {
+          invalidItems.map((e) => e.copyWith(status: VoucherStatus.expired)).forEach((element) async {
+            await _couponRepository.updateUserVoucher(element);
+          });
+        }
+
+        vouchers = vouchers + validItems;
 
         yield VoucherListSucess(
           vouchers: vouchers,
