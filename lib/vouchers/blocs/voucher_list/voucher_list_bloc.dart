@@ -55,14 +55,15 @@ abstract class VoucherListBloc extends Bloc<VoucherListEvent, VoucherListState> 
         if (listData.isEmpty) {
           yield const VoucherListSucess(hasReachedMax: true, vouchers: []);
         } else {
-          List<VoucherUser> invalidItems = listData..where((element) => element.isExpired());
-          List<VoucherUser> validItems = listData..where((element) => !element.isExpired());
+          List<VoucherUser> invalidItems = listData.where((element) => element.isExpired()).toList();
+          List<VoucherUser> validItems = listData.where((element) => !element.isExpired()).toList();
 
           if (invalidItems.isNotEmpty) {
-            invalidItems.map((e) => e.copyWith(status: VoucherStatus.expired)).forEach((element) async {
-              await _couponRepository.updateUserVoucher(element);
-            });
+            List<VoucherUser> updatedInvalidItems = invalidItems.map((e) => e.copyWith(status: VoucherStatus.expired)).toList();
+
+            await _couponRepository.updateUserVoucher(updatedInvalidItems.first);
           }
+
           yield VoucherListSucess(
             vouchers: validItems,
             lastDocument: querySnapshot.docs.last,
@@ -70,6 +71,7 @@ abstract class VoucherListBloc extends Bloc<VoucherListEvent, VoucherListState> 
           );
         }
       } catch (e) {
+        log(e.toString());
         yield VoucherListFail();
       }
     } else {
@@ -95,13 +97,13 @@ abstract class VoucherListBloc extends Bloc<VoucherListEvent, VoucherListState> 
             )
             .toList();
 
-        List<VoucherUser> invalidItems = listData..where((element) => element.isExpired());
-        List<VoucherUser> validItems = listData..where((element) => !element.isExpired());
+        List<VoucherUser> invalidItems = listData.where((element) => element.isExpired()).toList();
+        List<VoucherUser> validItems = listData.where((element) => !element.isExpired()).toList();
 
         if (invalidItems.isNotEmpty) {
-          invalidItems.map((e) => e.copyWith(status: VoucherStatus.expired)).forEach((element) async {
-            await _couponRepository.updateUserVoucher(element);
-          });
+          // invalidItems.map((e) => e.copyWith(status: VoucherStatus.expired)).toList().forEach((element) async {
+          //   await _couponRepository.updateUserVoucher(element);
+          // });
         }
 
         vouchers = vouchers + validItems;

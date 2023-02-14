@@ -127,7 +127,7 @@ packages:
     description:
       path: "."
       ref: master
-      resolved-ref: "36a76069aa2cef571f6a24dcdec67ed3225b0db2"
+      resolved-ref: b27b8add5dc623b8b87352ab74bfea6a747ca0eb
       url: "https://github.com/jurej1/coupon_repository.git"
     source: git
     version: "0.0.0"
