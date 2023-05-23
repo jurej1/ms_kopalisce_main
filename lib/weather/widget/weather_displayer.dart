@@ -4,7 +4,8 @@ import 'package:weather_repository/weather_repository.dart';
 import 'package:intl/intl.dart';
 
 class WeatherDisplayer extends StatefulWidget {
-  const WeatherDisplayer({Key? key, required this.weatherLocation}) : super(key: key);
+  const WeatherDisplayer({Key? key, required this.weatherLocation})
+      : super(key: key);
 
   final WeatherLocation weatherLocation;
 
@@ -27,8 +28,8 @@ class _WeatherDisplayerState extends State<WeatherDisplayer> {
 
   @override
   void didChangeDependencies() {
-    super.didChangeDependencies();
     precacheImage(image, context);
+    super.didChangeDependencies();
   }
 
   @override
@@ -62,7 +63,8 @@ class _WeatherDisplayerState extends State<WeatherDisplayer> {
               ),
             ),
             Text(
-              DateFormat('EEEE - d MMMM y').format(widget.weatherLocation.lastUpdated),
+              DateFormat('EEEE - d MMMM y')
+                  .format(widget.weatherLocation.lastUpdated),
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -133,12 +135,14 @@ class _WeatherConditionDisplayer extends StatelessWidget {
             },
           ),
           const SizedBox(width: 10),
-          Text(
-            weatherLocation.conditionText,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              letterSpacing: 0.5,
+          Flexible(
+            child: Text(
+              weatherLocation.conditionText,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+                letterSpacing: 0.5,
+              ),
             ),
           ),
         ],
