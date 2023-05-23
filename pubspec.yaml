@@ -1,7 +1,7 @@
 name: ms_kopalisce_main
 description: A new Flutter project.
 
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
@@ -55,7 +55,6 @@ dev_dependencies:
     sdk: flutter
   flutter_launcher_icons: "^0.11.0"
 
-
 flutter:
   uses-material-design: true
   assets:
@@ -69,4 +68,3 @@ flutter_icons:
   android: true
   ios: true
   image_path: "assets/sobota_svica.png"
-  
