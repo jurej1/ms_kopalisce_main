@@ -6,7 +6,7 @@ import 'package:ms_kopalisce_main/quiz/quiz.dart';
 import 'package:quiz_repository/quiz_repository.dart';
 
 class QuizDisplayer extends StatelessWidget {
-  QuizDisplayer._({Key? key}) : super(key: key);
+  const QuizDisplayer._({Key? key}) : super(key: key);
 
   static provider(List<Question> questions) {
     final quizAnwserRecordCubit = QuizAnswerRecordCubit();
@@ -26,7 +26,7 @@ class QuizDisplayer extends StatelessWidget {
           ),
         ),
       ],
-      child: QuizDisplayer._(),
+      child: const QuizDisplayer._(),
     );
   }
 
@@ -37,7 +37,8 @@ class QuizDisplayer extends StatelessWidget {
     return BlocConsumer<QuizDisplayerCubit, QuizDisplayerState>(
       listener: (context, state) {
         if (state.status.isDone) {
-          BlocProvider.of<QuizRewardBloc>(context).add(QuizRewardLoadRequested());
+          BlocProvider.of<QuizRewardBloc>(context)
+              .add(QuizRewardLoadRequested());
         }
       },
       builder: (context, state) {
@@ -47,7 +48,8 @@ class QuizDisplayer extends StatelessWidget {
           child: Column(
             children: [
               _ProgressBar(
-                widthFactor: (state.activeQuestionIndex) / state.question.length,
+                widthFactor:
+                    (state.activeQuestionIndex) / state.question.length,
               ),
               Expanded(
                 child: state.status.isPlaying

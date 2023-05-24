@@ -20,20 +20,23 @@ class AnswerCard extends StatelessWidget {
           child: InkWell(
             onTap: () {
               if (!isAnwserSelectedStatus) {
-                BlocProvider.of<QuestionDisplayerCubit>(context).anwserSelected(answer.id);
+                BlocProvider.of<QuestionDisplayerCubit>(context)
+                    .anwserSelected(answer.id);
               }
             },
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
                 alignment: Alignment.center,
-                child: Text(
-                  answer.text,
-                  maxLines: 3,
-                  style: const TextStyle(
-                    overflow: TextOverflow.clip,
-                    color: Colors.white,
-                    fontSize: 18,
+                child: Flexible(
+                  child: Text(
+                    answer.text,
+                    maxLines: 3,
+                    style: const TextStyle(
+                      overflow: TextOverflow.clip,
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ),
@@ -49,6 +52,8 @@ class AnswerCard extends StatelessWidget {
 
     bool isThisRightAnwser = answer.id == state.question.rightAnwser.id;
 
-    return isAnwserSelectedStatus ? (isThisRightAnwser ? Colors.green : Colors.red) : Colors.blue;
+    return isAnwserSelectedStatus
+        ? (isThisRightAnwser ? Colors.green : Colors.red)
+        : Colors.blue;
   }
 }
